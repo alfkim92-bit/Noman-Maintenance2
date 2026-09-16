@@ -269,6 +269,52 @@ img {
     cursor: pointer;
 }
 
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--light-color);
+    min-width: 250px;
+    box-shadow: var(--shadow-md);
+    z-index: 1;
+    border-radius: 8px;
+    transition: all var(--transition-fast);
+    transform: translateY(10px);
+    padding: 10px 0;
+}
+
+.dropdown-content a {
+    color: var(--text-main);
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.dropdown-content a::after {
+    display: none;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--gray-light);
+    color: var(--primary-color);
+}
+
+.dropdown:hover .dropdown-content {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* ==========================================================================
    Hero Section
    ========================================================================== */
