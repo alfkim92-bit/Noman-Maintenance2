@@ -749,6 +749,114 @@ img {
     transition: opacity 1s ease-out, transform 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ==========================================================================
+   Inner Pages Layout
+   ========================================================================== */
+.page-layout-grid {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr;
+    gap: 40px;
+}
+
+.page-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.content-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.content-gallery img {
+    width: 100%;
+    border-radius: 8px;
+    height: 200px;
+    object-fit: cover;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-normal);
+}
+
+.content-gallery img:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-md);
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem;
+}
+
+.content-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-main);
+}
+
+.content-list {
+    list-style: none;
+    padding: 0;
+}
+
+.content-list li {
+    font-size: 1.05rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+.content-list li i {
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+}
+
+.sidebar-menu {
+    background: var(--gray-light);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.sidebar-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: var(--light-color);
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+    color: var(--dark-color);
+}
+
+.sidebar-link:hover {
+    transform: translateX(5px);
+    color: var(--primary-color);
+}
+
+.sidebar-link.active {
+    background: var(--secondary-color);
+    color: var(--light-color);
+}
+
+/* ==========================================================================
+   Achievements Section
+   ========================================================================== */
+.achievements-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 50px;
+    align-items: center;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .projects-grid, .solutions-grid {
@@ -771,6 +879,10 @@ img {
     
     .footer-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .page-layout-grid, .achievements-grid {
+        grid-template-columns: 1fr;
     }
 }
 
