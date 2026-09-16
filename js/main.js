@@ -36,20 +36,59 @@ document.addEventListener('DOMContentLoaded', () => {
         threshold: 0.15
     };
     
+    // Function to animate numbers
+    const animateValue = (obj, start, end, duration) => {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            obj.innerHTML = Math.floor(progress * (end - start) + start) + (obj.dataset.suffix || '');
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+    }
+    
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // Optional: Unobserve after animating if you only want it to happen once
-                // observer.unobserve(entry.target);
+                
+                // If it's a stat-box, trigger number animation
+                if(entry.target.classList.contains('stat-box') && !entry.target.classList.contains('animated-number')) {
+                    entry.target.classList.add('animated-number');
+                    const h3 = entry.target.querySelector('h3');
+                    if(h3) {
+                        const text = h3.innerText;
+                        const number = parseInt(text.replace(/[^0-9]/g, ''));
+                        const suffix = text.replace(/[0-9]/g, '');
+                        if(!isNaN(number)) {
+                            h3.dataset.suffix = suffix;
+                            animateValue(h3, 0, number, 2000); // Animate over 2 seconds
+                        }
+                    }
+                }
+                
+                // Unobserve after animating
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
     
-    // Select all elements with slide-in classes
-    const animatedElements = document.querySelectorAll('.slide-in-left, .slide-in-right, .slide-in-bottom');
+    // Select all elements with slide-in classes and stat boxes
+    const animatedElements = document.querySelectorAll('.slide-in-left, .slide-in-right, .slide-in-bottom, .stat-box, .feature-card, .content-gallery img');
     
-    animatedElements.forEach(el => {
+    animatedElements.forEach((el, index) => {
+        // Add staggered delay for feature cards and gallery images
+        if(el.classList.contains('feature-card') || el.classList.contains('stat-box')) {
+            el.classList.add('slide-in-bottom');
+            el.style.transitionDelay = `${(index % 4) * 0.15}s`;
+        }
+        if(el.tagName === 'IMG' && el.parentElement.classList.contains('content-gallery')) {
+            el.classList.add('slide-in-bottom');
+            el.style.transitionDelay = `${(index % 4) * 0.1}s`;
+        }
         observer.observe(el);
     });
 });
