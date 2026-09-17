@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const observerOptions = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.15
+        threshold: 0.1
     };
     
     // Function to animate numbers
@@ -53,7 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Number animation for stat boxes
+                entry.target.classList.add('visible');
+                
+                // If it's a stat-box, trigger number animation
                 if(entry.target.classList.contains('stat-box') && !entry.target.classList.contains('animated-number')) {
                     entry.target.classList.add('animated-number');
                     const h3 = entry.target.querySelector('h3');
@@ -67,32 +69,39 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
                 }
+                
+                // Unobserve after animating
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
     
-    // Map existing animation classes to AOS
-    document.querySelectorAll('.slide-in-bottom').forEach(el => el.setAttribute('data-aos', 'fade-up'));
-    document.querySelectorAll('.slide-in-left').forEach(el => el.setAttribute('data-aos', 'fade-right'));
-    document.querySelectorAll('.slide-in-right').forEach(el => el.setAttribute('data-aos', 'fade-left'));
-
-    // Animate cards coming from sides (Staggered effect by mapping index to delay)
-    const animateFromSides = (selector, defaultDir) => {
-        document.querySelectorAll(selector).forEach((el, index) => {
-            el.setAttribute('data-aos', index % 2 === 0 ? 'fade-right' : 'fade-left');
-            el.setAttribute('data-aos-delay', (index % 4) * 100);
-        });
-    };
+    // Select all elements with slide-in classes and stat boxes
+    const animatedElements = document.querySelectorAll('.slide-in-left, .slide-in-right, .slide-in-bottom, .stat-box, .feature-card, .project-card, .solution-card, .content-gallery img');
     
-    animateFromSides('.feature-card');
-    animateFromSides('.cap-card');
-    animateFromSides('.solution-card, .solution-card-new');
-    
-    // Observe stat boxes for number counting
-    document.querySelectorAll('.stat-box').forEach((el, index) => {
-        el.setAttribute('data-aos', 'fade-up');
-        el.setAttribute('data-aos-delay', (index % 4) * 100);
+    animatedElements.forEach((el, index) => {
+        // Add staggered delay for feature cards
+        if(el.classList.contains('feature-card') || el.classList.contains('solution-card')) {
+            if(!el.classList.contains('slide-in-left') && !el.classList.contains('slide-in-right') && !el.classList.contains('slide-in-bottom')) {
+                el.classList.add('slide-in-bottom');
+            }
+            el.style.transitionDelay = `${(index % 3) * 0.15}s`;
+        }
+        if(el.classList.contains('project-card')) {
+            if(!el.classList.contains('slide-in-left') && !el.classList.contains('slide-in-right') && !el.classList.contains('slide-in-bottom')) {
+                el.classList.add('slide-in-bottom');
+            }
+        }
+        if(el.classList.contains('stat-box')) {
+            if(!el.classList.contains('slide-in-left') && !el.classList.contains('slide-in-right') && !el.classList.contains('slide-in-bottom')) {
+                el.classList.add('slide-in-bottom');
+            }
+            el.style.transitionDelay = `${(index % 4) * 0.15}s`;
+        }
+        if(el.tagName === 'IMG' && el.parentElement.classList.contains('content-gallery')) {
+            el.classList.add('slide-in-bottom');
+            el.style.transitionDelay = `${(index % 4) * 0.1}s`;
+        }
         observer.observe(el);
     });
 });
