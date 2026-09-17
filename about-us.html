@@ -3,14 +3,314 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noman Maintenance Services Company | 1- Ø´Ø±ÙƒØ© Ù†ÙˆÙ…Ø§Ù† Ù…ÙŠÙ†ØªÙŠÙ†Ø§Ù†Ø³ Ø³ÙŠØ±ÙÙŠØ³Ø²</title>
-    <meta name="description" content="Noman Maintenance Services Company (CR 7032690815) - Your Trusted Partner for Industrial & Infrastructure Projects, Services & Solutions">
-    <!-- Google Fonts -->
+    <title>About Us | Noman Maintenance Services Company</title>
+    <meta name="description" content="Learn about Noman Maintenance Services Company - Your Trusted Partner for Industrial & Infrastructure Projects, Services & Solutions in Saudi Arabia.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ---- About Page Specific Styles ---- */
+        .about-hero-section {
+            padding: 160px 0 80px;
+            background: #fff;
+        }
+        .about-hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-hero-image-stack {
+            position: relative;
+            height: 400px;
+        }
+        .about-hero-image-stack .img-main {
+            width: 75%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 12px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-shadow: 0 20px 50px rgba(11,61,145,0.2);
+        }
+        .about-hero-image-stack .img-secondary {
+            width: 55%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 12px;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            border: 4px solid #fff;
+        }
+        .about-hero-image-stack .vision-badge {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            background: #0b3d91;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            z-index: 10;
+        }
+        .about-badge {
+            color: #ff7e00;
+            font-weight: 700;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 15px;
+        }
+        .about-main-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #0b3d91;
+            line-height: 1.2;
+            margin-bottom: 25px;
+        }
+        .about-desc {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        /* ---- Global Clients ---- */
+        .clients-section {
+            padding: 60px 0;
+            background: #f5f7fa;
+        }
+        .clients-logos-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin-top: 30px;
+        }
+        .clients-logos-row img {
+            height: 45px;
+            opacity: 0.7;
+            filter: grayscale(80%);
+            transition: all 0.3s;
+        }
+        .clients-logos-row img:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+
+        /* ---- Vision 2030 Banner ---- */
+        .vision-section {
+            padding: 80px 0;
+            background: #fff;
+        }
+        .vision-card {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .vision-card-left {
+            background: #0b3d91;
+            padding: 50px 40px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .vision-card-right {
+            background: #fff;
+            padding: 50px 40px;
+        }
+
+        /* ---- Achievements ---- */
+        .achievements-section {
+            background: #0b3d91;
+            padding: 100px 0;
+            position: relative;
+            color: #fff;
+            overflow: hidden;
+        }
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .achievements-images {
+            position: relative;
+            height: 320px;
+        }
+        .achievements-images img:first-child {
+            width: 65%;
+            height: 270px;
+            object-fit: cover;
+            border-radius: 12px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border: 4px solid rgba(255,255,255,0.2);
+        }
+        .achievements-images img:last-child {
+            width: 55%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            border: 4px solid rgba(255,255,255,0.2);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .stat-box {
+            border-left: 3px solid #ff7e00;
+            padding-left: 20px;
+        }
+        .stat-box h3 {
+            font-size: 3rem;
+            color: #ff7e00;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+        .stat-box p {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.85;
+        }
+
+        /* ---- Why Choose ---- */
+        .why-section {
+            padding: 100px 0;
+            background: #f5f7fa;
+        }
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: start;
+        }
+        .why-card {
+            background: #ffb13b;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(255,177,59,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .why-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 12px 30px rgba(255,177,59,0.4);
+        }
+        .why-card h3 { color: #fff; font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+        .why-card p { color: rgba(255,255,255,0.9); font-size: 0.95rem; line-height: 1.6; }
+
+        /* ---- Global Reach ---- */
+        .global-reach-section {
+            padding: 100px 0;
+            background: #fff;
+        }
+        .global-reach-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .reach-card-blue {
+            background: #0b3d91;
+            border-radius: 16px;
+            padding: 40px;
+            color: white;
+        }
+        .reach-card-locations {
+            padding: 30px;
+        }
+        .location-item {
+            margin-bottom: 25px;
+        }
+        .location-item h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #0b3d91;
+            margin-bottom: 3px;
+        }
+        .location-item p { color: #777; font-size: 0.9rem; }
+
+        /* ---- Building Trust Banner ---- */
+        .trust-banner {
+            background: #0b3d91;
+            padding: 60px 0;
+        }
+        .trust-banner-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .trust-banner-text h4 {
+            color: #ff7e00;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .trust-banner-text h2 {
+            color: #fff;
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 20px;
+        }
+        .trust-stats {
+            display: flex;
+            gap: 40px;
+        }
+        .trust-stat {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .trust-stat img {
+            width: 70px;
+            height: 55px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .trust-stat-text strong {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #ff7e00;
+        }
+        .trust-stat-text span {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.8);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Wave */
+        .wave-divider { line-height: 0; overflow: hidden; }
+        .wave-divider svg { display: block; }
+    </style>
 </head>
 <body>
 
@@ -21,13 +321,12 @@
                 <img src="assets/logo.jpeg" alt="Noman Maintenance Services Company Logo" class="logo-img">
                 <div class="logo-text">
                     <span class="logo-name-en">Noman Maintenance Services</span>
-                    <span class="logo-name-ar">Ø´Ø±ÙƒØ© Ù†ÙˆÙ…Ø§Ù† Ù…ÙŠÙ†ØªÙŠÙ†Ø§Ù†Ø³ Ø³ÙŠØ±ÙÙŠØ³Ø²</span>
+                    <span class="logo-name-ar">شركة نومان مينتينانس سيرفيسز</span>
                     <span class="cr-number">CR 7032690815</span>
                 </div>
             </a>
             <nav class="nav-links">
-                <a href="index.html" >Home</a>
-                
+                <a href="index.html">Home</a>
                 <div class="dropdown">
                     <a href="#">Our Services <i class="fas fa-chevron-down"></i></a>
                     <div class="dropdown-content">
@@ -38,7 +337,6 @@
                         <a href="electrical-instrumentation.html">Electrical & Instrumentation</a>
                     </div>
                 </div>
-
                 <div class="dropdown">
                     <a href="#">Our Solutions <i class="fas fa-chevron-down"></i></a>
                     <div class="dropdown-content">
@@ -50,37 +348,220 @@
                         <a href="venturi-steam-traps.html">Venturi Steam Traps</a>
                     </div>
                 </div>
-
                 <a href="projects.html">Our Projects</a>
                 <a href="certificates.html">Our Certificates</a>
-                <a href="about-us.html">About Us</a>
+                <a href="about-us.html" class="active">About Us</a>
             </nav>
-            <a href="#" class="btn btn-primary btn-contact">Contact Us <i class="fas fa-phone-alt"></i></a>
-            <div class="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
+            <a href="contact.html" class="btn btn-primary btn-contact">Contact Us <i class="fas fa-phone-alt"></i></a>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
         </div>
     </header>
 
-        <!-- Inner Hero Section -->
-    <section class="hero slide-in-bottom" style="height: 40vh; min-height: 300px; background-image: url('assets/WhatsApp-Image-2025-08-30-at-13-47-35.jpeg');">
-        <div class="hero-overlay"></div>
-        <div class="container hero-content">
-            <h1 class="hero-title slide-in-right" style="font-size: 3rem; margin-top: 50px;">About Us</h1>
-            <p class="hero-cr slide-in-bottom">Noman Maintenance Services Company</p>
+    <!-- About Hero Section -->
+    <section class="about-hero-section">
+        <div class="container">
+            <div class="about-hero-grid">
+                <!-- Left: Image Stack -->
+                <div class="about-hero-image-stack slide-in-left">
+                    <img src="assets/WhatsApp-Image-2025-08-30-at-13-47-35.jpeg" alt="Noman Maintenance Project" class="img-main">
+                    <img src="assets/Picture7.jpg" alt="Noman Maintenance Work" class="img-secondary">
+                    <div class="vision-badge">
+                        <i class="fas fa-check-circle" style="color: #ff7e00; margin-right: 8px;"></i>
+                        VISION 2030 ALIGNED
+                    </div>
+                </div>
+                <!-- Right: Text -->
+                <div class="slide-in-right">
+                    <span class="about-badge">ABOUT NOMAN MAINTENANCE</span>
+                    <h1 class="about-main-title">Your Trusted Partner For Industrial & Infrastructure Projects, Services & Solutions</h1>
+                    <p class="about-desc">Noman Maintenance Services Company (CR 7032690815) is a trusted name in Saudi Arabia's industrial and infrastructure sector. We deliver world-class EPC, mechanical, electrical, and construction services, backed by a highly skilled team and a commitment to excellence.</p>
+                    <p class="about-desc">Aligned with Saudi Vision 2030, we are deeply committed to empowering the local workforce, driving sustainable industrial growth, and building long-lasting relationships with our clients across the Kingdom.</p>
+                    <a href="contact.html" class="btn btn-primary">Contact Us <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Page Content Section -->
-    <section class="section-padding">
-        <div class="container slide-in-bottom">
-            <h2 class="section-title">About Us</h2>
-            <p class="section-subtitle">Detailed information about About Us will be provided here.</p>
-            <div style="height: 300px; background-color: #f5f7fa; border-radius: 12px; margin-top: 30px; display: flex; align-items: center; justify-content: center; color: #a0a0a0; font-size: 1.2rem; border: 2px dashed #ddd;">
-                Content Placeholder
+    <!-- Global Clients Section -->
+    <section class="clients-section">
+        <div class="container text-center slide-in-bottom">
+            <h3 style="font-size: 1.4rem; color: #0b3d91; font-weight: 700; margin-bottom: 10px;">Our Global Clients</h3>
+            <div class="clients-logos-row">
+                <img src="assets/image (1).svg" alt="Client 1">
+                <img src="assets/image (2).svg" alt="Client 2">
+                <img src="assets/image (3).svg" alt="Client 3">
+                <img src="assets/image (4).svg" alt="Client 4">
+                <img src="assets/image.svg" alt="Client 5">
             </div>
         </div>
-    </section><!-- Footer Divider Graphic -->
+    </section>
+
+    <!-- Vision 2030 Section -->
+    <section class="vision-section">
+        <div class="container slide-in-bottom">
+            <div class="vision-card">
+                <div class="vision-card-left">
+                    <img src="assets/world_map_png_6_1.webp" alt="Vision 2030" style="height: 50px; filter: brightness(0) invert(1); margin-bottom: 20px;">
+                    <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 15px;">المملكة العربية السعودية<br><span style="font-size: 1rem; font-weight: 400; opacity: 0.8;">Kingdom of Saudi Arabia</span></h3>
+                    <p style="font-size: 0.9rem; opacity: 0.85; line-height: 1.7;">Aligned with Saudi Vision 2030, contributing to a thriving industrial economy and infrastructure excellence.</p>
+                </div>
+                <div class="vision-card-right">
+                    <span style="color: #ff7e00; font-weight: 700; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase;">VISION 2030</span>
+                    <h3 style="color: #0b3d91; font-size: 1.6rem; font-weight: 800; margin: 12px 0 15px;">Commitment to the Kingdom's Future</h3>
+                    <p style="color: #555; line-height: 1.7; font-size: 0.95rem; margin-bottom: 20px;">Our strategic initiatives and projects are designed to empower the local workforce and drive sustainable industrial growth across Saudi Arabia. We build with pride, for a stronger nation.</p>
+                    <p style="color: #555; line-height: 1.7; font-size: 0.95rem;">From cutting-edge EPC projects to advanced industrial solutions, Noman Maintenance is a driving force behind Vision 2030's industrial and infrastructure goals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section class="achievements-section">
+        <!-- Top Wave -->
+        <div class="wave-divider" style="position: absolute; top: 0; left: 0; width: 100%;">
+            <svg viewBox="0 0 1200 60" preserveAspectRatio="none" style="width: 100%; height: 60px;">
+                <path d="M0,0 C300,60 900,0 1200,40 L1200,0 Z" fill="#fff"/>
+            </svg>
+        </div>
+
+        <div class="container" style="position: relative; z-index: 2; padding-top: 40px;">
+            <div class="achievements-grid">
+                <div class="slide-in-left">
+                    <span style="color: #ff7e00; font-weight: 700; letter-spacing: 2px; font-size: 0.9rem;">AT A GLANCE</span>
+                    <h2 style="font-size: 2.2rem; font-weight: 800; margin: 15px 0 25px;">Our Achievements At A Glance</h2>
+                    <p style="opacity: 0.8; font-size: 1rem; line-height: 1.7; max-width: 400px;">We measure our success by the value we bring to our clients and the impact we make in the industry.</p>
+                    <div class="achievements-images" style="margin-top: 40px;">
+                        <img src="assets/WhatsApp-Image-2025-08-30-at-13-47-35.jpeg" alt="Achievement 1">
+                        <img src="assets/WhatsApp-Image-2025-09-04-at-10-30-26.jpeg" alt="Achievement 2">
+                    </div>
+                </div>
+                <div class="slide-in-right">
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <h3>90M+</h3>
+                            <p>Man Hours</p>
+                        </div>
+                        <div class="stat-box">
+                            <h3>24+</h3>
+                            <p>Projects Completed</p>
+                        </div>
+                        <div class="stat-box">
+                            <h3>5+</h3>
+                            <p>Ongoing Projects</p>
+                        </div>
+                        <div class="stat-box">
+                            <h3>3+</h3>
+                            <p>Mega Projects</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Wave -->
+        <div class="wave-divider" style="position: absolute; bottom: 0; left: 0; width: 100%;">
+            <svg viewBox="0 0 1200 60" preserveAspectRatio="none" style="width: 100%; height: 60px;">
+                <path d="M0,60 C300,0 900,60 1200,20 L1200,60 Z" fill="#f5f7fa"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section class="why-section">
+        <div class="container">
+            <div class="why-grid">
+                <div class="slide-in-left">
+                    <span style="color: #ff7e00; font-weight: 700; letter-spacing: 2px; font-size: 0.85rem; text-transform: uppercase;">EXCELLENCE IN ACTION</span>
+                    <h2 style="font-size: 2.2rem; font-weight: 800; color: #0b3d91; margin: 15px 0 20px; line-height: 1.3;">Why Choose Noman Maintenance Services Company?</h2>
+                    <p style="color: #777; font-size: 1rem; line-height: 1.7;">Explore a comprehensive range of our services and solutions that will support you in every stage of your project.</p>
+                </div>
+                <div>
+                    <div class="why-card slide-in-right">
+                        <h3>Expert Team:</h3>
+                        <p>With our experienced professionals, you are guaranteed accurate and reliable services that align with technology and fulfill specific client business needs effectively.</p>
+                    </div>
+                    <div class="why-card slide-in-right" style="transition-delay: 0.1s;">
+                        <h3>Personalized Approach:</h3>
+                        <p>We focus on the distinct requirements of each individual company and deliver the best setup, significantly magnifying value out of every project.</p>
+                    </div>
+                    <div class="why-card slide-in-right" style="transition-delay: 0.2s;">
+                        <h3>Timely And Reliable:</h3>
+                        <p>At Noman Maintenance, time is everything. Our work relies on timely routines consistently giving us the competence to deliver projects without risk or delay.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Reach Section -->
+    <section class="global-reach-section">
+        <div class="container">
+            <div class="text-center slide-in-bottom">
+                <h2 style="font-size: 2.2rem; font-weight: 800; color: #0b3d91;">Our Global Reach</h2>
+            </div>
+            <div class="global-reach-grid">
+                <div class="reach-card-blue slide-in-left">
+                    <div style="width: 50px; height: 50px; background: rgba(255,255,255,0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <i class="fas fa-map-marker-alt" style="color: #ff7e00; font-size: 1.5rem;"></i>
+                    </div>
+                    <span style="color: #ff7e00; font-weight: 700; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;">OUR STRATEGIC OFFICES</span>
+                    <h3 style="color: #fff; font-size: 1.4rem; font-weight: 800; margin: 12px 0 15px;">Our Strategic Office Locations</h3>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.7; margin-bottom: 20px;">This extensive network ensures our strong global presence across the GCC countries, enabling us to provide seamless and professional solutions wherever your projects are located.</p>
+                    <a href="contact.html" style="color: #ff7e00; font-weight: 700; font-size: 0.85rem; text-decoration: none; letter-spacing: 1px;">CONTACT US <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="reach-card-locations slide-in-right">
+                    <div class="location-item">
+                        <h4><i class="fas fa-map-marker-alt" style="color: #0b3d91; margin-right: 8px;"></i>Saudi Arabia</h4>
+                        <p>Jubail and Riyadh</p>
+                    </div>
+                    <div class="location-item">
+                        <h4><i class="fas fa-map-marker-alt" style="color: #0b3d91; margin-right: 8px;"></i>United Arab Emirates</h4>
+                        <p>Dubai</p>
+                    </div>
+                    <div class="location-item">
+                        <h4 style="color: #ff7e00;"><i class="fas fa-map-marker-alt" style="color: #ff7e00; margin-right: 8px;"></i>Bahrain</h4>
+                        <p>Manama</p>
+                    </div>
+                    <div style="margin-top: 30px;">
+                        <img src="assets/world_map_png_6_1.webp" alt="Global Map" style="max-width: 100%; border-radius: 8px; opacity: 0.8;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Building Trust Banner -->
+    <section class="trust-banner">
+        <div class="container">
+            <div class="trust-banner-grid">
+                <div class="slide-in-left">
+                    <div class="trust-banner-text">
+                        <h4>OUR GLOBAL TEAM</h4>
+                        <h2>Building Trust, One Project At A Time</h2>
+                        <p style="color: rgba(255,255,255,0.8); font-size: 0.95rem; line-height: 1.7;">We are deeply rooted in Saudi Arabia. Our goal is to extend our services and expertise across the globe, particularly within the GCC region. We are constantly evaluating and expanding our capabilities to cater to any market and challenge.</p>
+                    </div>
+                </div>
+                <div class="trust-stats slide-in-right">
+                    <div class="trust-stat">
+                        <img src="assets/WhatsApp-Image-2025-08-30-at-13-47-35.jpeg" alt="Projects">
+                        <div class="trust-stat-text">
+                            <strong>24+</strong>
+                            <span>Projects Completed</span>
+                        </div>
+                    </div>
+                    <div class="trust-stat">
+                        <img src="assets/WhatsApp-Image-2025-09-04-at-10-30-26.jpeg" alt="Man Hours">
+                        <div class="trust-stat-text">
+                            <strong>90M+</strong>
+                            <span>Man Hours</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Divider -->
     <div class="section-divider slide-in-bottom">
         <div class="divider-shape"></div>
     </div>
@@ -93,55 +574,47 @@
                     <img src="assets/logo.jpeg" alt="Logo" class="footer-logo">
                     <div class="footer-logo-text">
                         <span class="logo-name-en">Noman Maintenance Services</span>
-                        <span class="logo-name-ar">Ø´Ø±ÙƒØ© Ù†ÙˆÙ…Ø§Ù† Ù…ÙŠÙ†ØªÙŠÙ†Ø§Ù†Ø³ Ø³ÙŠØ±ÙÙŠØ³Ø²</span>
+                        <span class="logo-name-ar">شركة نومان مينتينانس سيرفيسز</span>
                     </div>
                 </div>
                 <p class="footer-desc">Your Trusted Partner for Industrial & Infrastructure Projects, Services & Solutions</p>
             </div>
-            
             <div class="footer-links slide-in-bottom">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="#">Main Home</a></li>
-                    <li><a href="#">Our Service</a></li>
-                    <li><a href="#">Our Solutions</a></li>
-                    <li><a href="#">Our Projects</a></li>
-                    <li><a href="#">Our Certificates</a></li>
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="index.html">Main Home</a></li>
+                    <li><a href="epc-lstk.html">Our Services</a></li>
+                    <li><a href="acoustic-pyrometers.html">Our Solutions</a></li>
+                    <li><a href="projects.html">Our Projects</a></li>
+                    <li><a href="certificates.html">Our Certificates</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
                 </ul>
             </div>
-
             <div class="footer-links slide-in-bottom" style="transition-delay: 0.1s;">
-                <h3>Quick Links</h3>
+                <h3>Our Services</h3>
                 <ul>
-                    <li><a href="#">EPC/LSTK Project</a></li>
-                    <li><a href="#">Mechanical Works</a></li>
-                    <li><a href="#">Data Center Solutions</a></li>
-                    <li><a href="#">Civil Construction & Infrastructure Development</a></li>
-                    <li><a href="#">Electrical & Instrumentation</a></li>
+                    <li><a href="epc-lstk.html">EPC/LSTK Project</a></li>
+                    <li><a href="mechanical-works.html">Mechanical Works</a></li>
+                    <li><a href="construction-infrastructure.html">Civil Construction & Infrastructure</a></li>
+                    <li><a href="electrical-instrumentation.html">Electrical & Instrumentation</a></li>
                 </ul>
             </div>
-
             <div class="footer-contact slide-in-right">
                 <h3>Get In Touch</h3>
-                <p>Saudi Arabia</p>
-                <p class="mt-4">Email: info@nomanmaintenance.com</p>
-                <p>Phone: +966 XX XXX XXXX</p>
+                <p><i class="fas fa-map-marker-alt" style="color: #ff7e00; margin-right: 8px;"></i>Saudi Arabia — Jubail & Riyadh</p>
+                <p class="mt-4"><i class="fas fa-envelope" style="color: #ff7e00; margin-right: 8px;"></i>info@nomanmaintenance.com</p>
+                <p><i class="fas fa-phone" style="color: #ff7e00; margin-right: 8px;"></i>+966 535 484852</p>
                 <p class="mt-4"><strong>CR Number:</strong> 7032690815</p>
             </div>
         </div>
         <div class="footer-bottom">
             <div class="container text-center">
-                <p>Copyright Â© | 2026 | All Rights Reserved.</p>
+                <p>Copyright © | 2026 | All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="js/main.js"></script>
 </body>
 </html>
-
-
-
 
