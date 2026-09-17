@@ -53,9 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                
-                // If it's a stat-box, trigger number animation
+                // Number animation for stat boxes
                 if(entry.target.classList.contains('stat-box') && !entry.target.classList.contains('animated-number')) {
                     entry.target.classList.add('animated-number');
                     const h3 = entry.target.querySelector('h3');
@@ -65,30 +63,36 @@ document.addEventListener('DOMContentLoaded', () => {
                         const suffix = text.replace(/[0-9]/g, '');
                         if(!isNaN(number)) {
                             h3.dataset.suffix = suffix;
-                            animateValue(h3, 0, number, 2000); // Animate over 2 seconds
+                            animateValue(h3, 0, number, 2000);
                         }
                     }
                 }
-                
-                // Unobserve after animating
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
     
-    // Select all elements with slide-in classes and stat boxes
-    const animatedElements = document.querySelectorAll('.slide-in-left, .slide-in-right, .slide-in-bottom, .stat-box, .feature-card, .content-gallery img');
+    // Map existing animation classes to AOS
+    document.querySelectorAll('.slide-in-bottom').forEach(el => el.setAttribute('data-aos', 'fade-up'));
+    document.querySelectorAll('.slide-in-left').forEach(el => el.setAttribute('data-aos', 'fade-right'));
+    document.querySelectorAll('.slide-in-right').forEach(el => el.setAttribute('data-aos', 'fade-left'));
+
+    // Animate cards coming from sides (Staggered effect by mapping index to delay)
+    const animateFromSides = (selector, defaultDir) => {
+        document.querySelectorAll(selector).forEach((el, index) => {
+            el.setAttribute('data-aos', index % 2 === 0 ? 'fade-right' : 'fade-left');
+            el.setAttribute('data-aos-delay', (index % 4) * 100);
+        });
+    };
     
-    animatedElements.forEach((el, index) => {
-        // Add staggered delay for feature cards and gallery images
-        if(el.classList.contains('feature-card') || el.classList.contains('stat-box')) {
-            el.classList.add('slide-in-bottom');
-            el.style.transitionDelay = `${(index % 4) * 0.15}s`;
-        }
-        if(el.tagName === 'IMG' && el.parentElement.classList.contains('content-gallery')) {
-            el.classList.add('slide-in-bottom');
-            el.style.transitionDelay = `${(index % 4) * 0.1}s`;
-        }
+    animateFromSides('.feature-card');
+    animateFromSides('.cap-card');
+    animateFromSides('.solution-card, .solution-card-new');
+    
+    // Observe stat boxes for number counting
+    document.querySelectorAll('.stat-box').forEach((el, index) => {
+        el.setAttribute('data-aos', 'fade-up');
+        el.setAttribute('data-aos-delay', (index % 4) * 100);
         observer.observe(el);
     });
 });

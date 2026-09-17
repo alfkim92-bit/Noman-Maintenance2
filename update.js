@@ -1,97 +1,45 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noman Maintenance Services Company | 1- شركة نومان مينتينانس سيرفيسز</title>
-    <meta name="description" content="Noman Maintenance Services Company (CR 7032690815) - Your Trusted Partner for Industrial & Infrastructure Projects, Services & Solutions">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="css/style.css">
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"></head>
-<body>
+const fs = require('fs');
 
-    <!-- Header / Navbar -->
-    <header class="navbar">
-        <div class="container nav-container">
-            <a href="index.html" class="logo-link">
-                <img src="assets/logo.jpeg" alt="Noman Maintenance Services Company Logo" class="logo-img">
-                <div class="logo-text">
-                    <span class="logo-name-en">Noman Maintenance Services</span>
-                    <span class="logo-name-ar">شركة نومان مينتينانس سيرفيسز</span>
-                    <span class="cr-number">CR 7032690815</span>
-                </div>
-            </a>
-            <nav class="nav-links">
-                <a href="index.html" class="active">Home</a>
-                
-                <div class="dropdown">
-                    <a href="#">Our Services <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-content">
-                        <a href="epc-lstk.html">EPC/LSTK Project</a>
-                        <a href="engineering-design.html">Engineering & Design</a>
-                        <a href="construction-infrastructure.html">Construction & Infrastructure</a>
-                        <a href="mechanical-works.html">Mechanical Works</a>
-                        <a href="electrical-instrumentation.html">Electrical & Instrumentation</a>
-                    </div>
-                </div>
+const indexHtml = fs.readFileSync('index.html', 'utf-8');
 
-                <div class="dropdown">
-                    <a href="#">Our Solutions <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-content">
-                        <a href="acoustic-pyrometers.html">Acoustic Pyrometers</a>
-                        <a href="engineering-simulation.html">Engineering Simulation Solutions</a>
-                        <a href="industrial-water-treatment.html">Industrial Water Treatment Solutions</a>
-                        <a href="modular-floating-cover.html">Modular Floating Cover</a>
-                        <a href="process-heat-transfer.html">Process Heat Transfer Solutions</a>
-                        <a href="venturi-steam-traps.html">Venturi Steam Traps</a>
-                    </div>
-                </div>
+const headerEnd = indexHtml.indexOf('    <!-- Hero Section -->');
+const footerStart = indexHtml.indexOf('    <!-- Footer Divider Graphic -->');
 
-                <a href="projects.html">Our Projects</a>
-                <a href="certificates.html">Our Certificates</a>
-                <a href="about-us.html">About Us</a>
-            </nav>
-            <a href="#" class="btn btn-primary btn-contact">Contact Us <i class="fas fa-phone-alt"></i></a>
-            <div class="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </header>
+const header = indexHtml.substring(0, headerEnd);
+const footer = indexHtml.substring(footerStart);
 
+const newBody = `
     <!-- Rotating Hero Banner -->
-    <section class="hero-slider-section" style="position: relative; height: 100vh; min-height: 600px; padding-top: 90px; overflow: hidden; background: #000;">
-        <div class="swiper hero-swiper" style="width: 100%; height: 100%;">
+    <section class="hero-slider-section">
+        <div class="swiper hero-swiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <div class="slide-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('assets/WhatsApp-Image-2025-08-30-at-13-47-35.jpeg'); background-size: cover; background-position: center; opacity: 0.6;"></div>
-                    <div class="container hero-slide-content" style="position: relative; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; z-index: 2; padding: 0 20px;">
-                        <span class="hero-badge" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(5px); color: white; padding: 8px 20px; border-radius: 30px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; font-size: 0.9rem;">[ Noman Maintenance Services ]</span>
-                        <h1 style="color: white; font-size: 4.5rem; font-weight: 800; max-width: 900px; line-height: 1.2; margin-bottom: 30px; text-shadow: 0 5px 15px rgba(0,0,0,0.5);">Comprehensive Solutions for Industrial & Infrastructure Success</h1>
-                        <a href="#" class="btn btn-primary" style="background: #ff7e00; color: white; padding: 15px 40px; font-size: 1.1rem; border-radius: 30px; text-decoration: none; font-weight: 700;">Explore More</a>
+                    <div class="slide-bg" style="background-image: url('assets/WhatsApp-Image-2025-08-30-at-13-47-35.jpeg');"></div>
+                    <div class="hero-overlay-gradient"></div>
+                    <div class="container hero-slide-content">
+                        <span class="hero-badge">[ Noman Maintenance Services ]</span>
+                        <h1>Comprehensive Solutions for Industrial & Infrastructure Success</h1>
+                        <a href="#" class="btn btn-primary">Explore More</a>
                     </div>
                 </div>
                 <div class="swiper-slide">
-                    <div class="slide-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('assets/WhatsApp-Image-2025-09-04-at-10-30-26.jpeg'); background-size: cover; background-position: center; opacity: 0.6;"></div>
-                    <div class="container hero-slide-content" style="position: relative; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; z-index: 2; padding: 0 20px;">
-                        <span class="hero-badge" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(5px); color: white; padding: 8px 20px; border-radius: 30px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; font-size: 0.9rem;">[ Noman Maintenance Services ]</span>
-                        <h1 style="color: white; font-size: 4.5rem; font-weight: 800; max-width: 900px; line-height: 1.2; margin-bottom: 30px; text-shadow: 0 5px 15px rgba(0,0,0,0.5);">Pioneering Excellence in Every Project We Undertake</h1>
-                        <a href="#" class="btn btn-primary" style="background: #ff7e00; color: white; padding: 15px 40px; font-size: 1.1rem; border-radius: 30px; text-decoration: none; font-weight: 700;">Explore More</a>
+                    <div class="slide-bg" style="background-image: url('assets/WhatsApp-Image-2025-09-04-at-10-30-26.jpeg');"></div>
+                    <div class="hero-overlay-gradient"></div>
+                    <div class="container hero-slide-content">
+                        <span class="hero-badge">[ Noman Maintenance Services ]</span>
+                        <h1>Pioneering Excellence in Every Project We Undertake</h1>
+                        <a href="#" class="btn btn-primary">Explore More</a>
                     </div>
                 </div>
             </div>
             <!-- Navigation -->
-            <div class="swiper-button-next hero-next" style="color: white; right: 30px;"></div>
-            <div class="swiper-button-prev hero-prev" style="color: white; left: 30px;"></div>
+            <div class="swiper-button-next hero-next"></div>
+            <div class="swiper-button-prev hero-prev"></div>
         </div>
         <!-- 150+ Employees Floating Badge -->
-        <div class="floating-badge-employees" style="position: absolute; right: 5%; top: 50%; transform: translateY(-50%); background: #0b3d91; color: white; padding: 25px 20px; border-radius: 12px; text-align: center; z-index: 10; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border-bottom: 4px solid #ff7e00;">
-            <span class="emp-number" style="display: block; font-size: 2.5rem; font-weight: 800; line-height: 1; margin-bottom: 5px;">150+</span>
-            <span class="emp-text" style="display: block; font-size: 0.85rem; letter-spacing: 1px; font-weight: 600;">EMPLOYEES</span>
+        <div class="floating-badge-employees">
+            <span class="emp-number">150+</span>
+            <span class="emp-text">EMPLOYEES</span>
         </div>
     </section>
 
@@ -110,7 +58,7 @@
     </section>
 
     <!-- Vision 2030 Banner & About -->
-    <section class="vision-about-section section-padding" style="background: #f5f7fa; padding: 100px 0;">
+    <section class="vision-about-section section-padding" style="background: #f5f7fa;">
         <div class="container">
             <div class="vision-banner" style="background: #fff; border-radius: 12px; padding: 0; box-shadow: 0 10px 30px rgba(0,0,0,0.05); display: flex; overflow: hidden; align-items: center; max-width: 900px; margin: 0 auto; margin-bottom: 80px;">
                 <div style="flex: 1; padding: 40px; background: #0b3d91; color: white;">
@@ -127,16 +75,14 @@
             <div class="about-block text-center mt-5">
                 <span class="badge" style="color: #ff7e00; letter-spacing: 2px; font-weight: 700; text-transform: uppercase;">ABOUT NOMAN MAINTENANCE</span>
                 <h2 class="section-title" style="font-size: 2.5rem; font-weight: 800; color: #0b3d91; margin: 15px 0 25px;">A PARTNER YOU CAN TRUST</h2>
-                <p class="section-subtitle mx-auto" style="max-width: 800px; color: #666; font-size: 1.1rem; line-height: 1.8; margin: 0 auto;">Rooted in Saudi Arabia, we bring the best in class services and capabilities. We are deeply committed to ensuring your industrial and infrastructure projects succeed on every level with uncompromising quality and safety.</p>
-                <div style="margin-top: 30px;">
-                    <a href="about-us.html" class="btn btn-primary" style="background: #ff7e00; color: white; padding: 12px 30px; border-radius: 30px; text-decoration: none; font-weight: 600;">Learn More</a>
-                </div>
+                <p class="section-subtitle mx-auto" style="max-width: 800px; color: #666; font-size: 1.1rem; line-height: 1.8;">Rooted in Saudi Arabia, we bring the best in class services and capabilities. We are deeply committed to ensuring your industrial and infrastructure projects succeed on every level with uncompromising quality and safety.</p>
+                <a href="about-us.html" class="btn btn-primary" style="margin-top: 30px; background: #ff7e00; color: white; padding: 12px 30px; border-radius: 30px; text-decoration: none; font-weight: 600;">Learn More</a>
             </div>
         </div>
     </section>
 
     <!-- Achievements Section -->
-    <section class="achievements-section section-padding" style="background-color: #0b3d91; color: #fff; padding: 100px 0;">
+    <section class="achievements-section section-padding" style="background-color: #0b3d91; color: #fff;">
         <div class="container">
             <div class="achievements-grid" style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center;">
                 <div class="achievements-images" style="position: relative; height: 350px;">
@@ -149,20 +95,20 @@
                     <p style="opacity: 0.8; margin-bottom: 40px; font-size: 1.05rem; line-height: 1.6;">We measure our success by the value we bring to our clients and the impact we make in the industry through dedication, expertise, and continuous innovation.</p>
                     <div class="stats-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
                         <div class="stat-box" style="border-left: 3px solid #ff7e00; padding-left: 20px;">
-                            <h3 style="font-size: 3rem; color: #ff7e00; font-weight: 800; line-height: 1; margin-bottom: 5px;">90M+</h3>
+                            <h3 style="font-size: 3rem; color: #ff7e00; font-weight: 800; line-height: 1; margin-bottom: 5px;">5M+</h3>
                             <p style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9;">Man Hours</p>
                         </div>
                         <div class="stat-box" style="border-left: 3px solid #ff7e00; padding-left: 20px;">
-                            <h3 style="font-size: 3rem; color: #ff7e00; font-weight: 800; line-height: 1; margin-bottom: 5px;">24+</h3>
+                            <h3 style="font-size: 3rem; color: #ff7e00; font-weight: 800; line-height: 1; margin-bottom: 5px;">150+</h3>
                             <p style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9;">Projects Completed</p>
                         </div>
                         <div class="stat-box" style="border-left: 3px solid #ff7e00; padding-left: 20px;">
-                            <h3 style="font-size: 3rem; color: #ff7e00; font-weight: 800; line-height: 1; margin-bottom: 5px;">5+</h3>
-                            <p style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9;">Ongoing Projects</p>
+                            <h3 style="font-size: 3rem; color: #ff7e00; font-weight: 800; line-height: 1; margin-bottom: 5px;">50+</h3>
+                            <p style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9;">Multi Plant Sites</p>
                         </div>
                         <div class="stat-box" style="border-left: 3px solid #ff7e00; padding-left: 20px;">
-                            <h3 style="font-size: 3rem; color: #ff7e00; font-weight: 800; line-height: 1; margin-bottom: 5px;">3+</h3>
-                            <p style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9;">Mega Projects Ongoing</p>
+                            <h3 style="font-size: 3rem; color: #ff7e00; font-weight: 800; line-height: 1; margin-bottom: 5px;">30+</h3>
+                            <p style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9;">Team Members</p>
                         </div>
                     </div>
                 </div>
@@ -171,7 +117,7 @@
     </section>
 
     <!-- Core Capabilities -->
-    <section class="capabilities-section section-padding" style="background: #f5f7fa; padding: 100px 0;">
+    <section class="capabilities-section section-padding" style="background: #f5f7fa;">
         <div class="container">
             <div style="text-align: center; margin-bottom: 50px;">
                 <span style="color: #ff7e00; font-weight: 700; letter-spacing: 2px;">EXPERTISE</span>
@@ -225,7 +171,7 @@
     </section>
 
     <!-- Innovative Solutions -->
-    <section class="innovative-solutions section-padding" style="background: #fff; padding: 100px 0;">
+    <section class="innovative-solutions section-padding" style="background: #fff;">
         <div class="container">
             <div style="text-align: center; margin-bottom: 50px;">
                 <h2 style="font-size: 2.5rem; font-weight: 800; color: #0b3d91;">Innovative Solutions We Offer</h2>
@@ -266,7 +212,7 @@
     </section>
 
     <!-- Recent Projects Slider -->
-    <section class="recent-projects section-padding" style="background: #f5f7fa; position: relative; padding: 100px 0;">
+    <section class="recent-projects section-padding" style="background: #f5f7fa; position: relative;">
         <div class="container">
             <div class="projects-header" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px;">
                 <div>
@@ -311,7 +257,7 @@
     </section>
 
     <!-- Why Choose Us Section -->
-    <section class="why-choose-us section-padding" style="background: white; padding: 100px 0;">
+    <section class="why-choose-us section-padding" style="background: white;">
         <div class="container">
             <div class="why-choose-grid" style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: flex-start;">
                 <div class="why-text-area">
@@ -341,7 +287,7 @@
     </section>
 
     <!-- Global Reach Section -->
-    <section class="global-reach section-padding" style="background: #f5f7fa; padding: 100px 0;">
+    <section class="global-reach section-padding" style="background: #f5f7fa;">
         <div class="container">
             <div style="text-align: center; margin-bottom: 50px;">
                 <h2 style="font-size: 2.5rem; font-weight: 800; color: #0b3d91;">Our Global Reach</h2>
@@ -371,61 +317,21 @@
             </div>
         </div>
     </section>
+`;
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container footer-grid">
-            <div class="footer-brand slide-in-left">
-                <div class="footer-logo-wrapper">
-                    <img src="assets/logo.jpeg" alt="Logo" class="footer-logo">
-                    <div class="footer-logo-text">
-                        <span class="logo-name-en">Noman Maintenance Services</span>
-                        <span class="logo-name-ar">شركة نومان مينتينانس سيرفيسز</span>
-                    </div>
-                </div>
-                <p class="footer-desc">Your Trusted Partner for Industrial & Infrastructure Projects, Services & Solutions</p>
-            </div>
-            
-            <div class="footer-links slide-in-bottom">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#">Main Home</a></li>
-                    <li><a href="#">Our Service</a></li>
-                    <li><a href="#">Our Solutions</a></li>
-                    <li><a href="#">Our Projects</a></li>
-                    <li><a href="#">Our Certificates</a></li>
-                    <li><a href="#">About Us</a></li>
-                </ul>
-            </div>
+let resultHtml = header + newBody + footer;
 
-            <div class="footer-links slide-in-bottom" style="transition-delay: 0.1s;">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#">EPC/LSTK Project</a></li>
-                    <li><a href="#">Mechanical Works</a></li>
-                    <li><a href="#">Data Center Solutions</a></li>
-                    <li><a href="#">Civil Construction & Infrastructure Development</a></li>
-                    <li><a href="#">Electrical & Instrumentation</a></li>
-                </ul>
-            </div>
+// Add Swiper CSS if not present
+if (!resultHtml.includes('swiper-bundle.min.css')) {
+    resultHtml = resultHtml.replace(
+        '</head>', 
+        '    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />\n</head>'
+    );
+}
 
-            <div class="footer-contact slide-in-right">
-                <h3>Get In Touch</h3>
-                <p>Saudi Arabia</p>
-                <p class="mt-4">Email: info@nomanmaintenance.com</p>
-                <p>Phone: +966 XX XXX XXXX</p>
-                <p class="mt-4"><strong>CR Number:</strong> 7032690815</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container text-center">
-                <p>Copyright © | 2026 | All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="js/main.js"></script>
+// Add Swiper JS and initialization script before </body>
+if (!resultHtml.includes('swiper-bundle.min.js')) {
+    const scripts = `
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -461,7 +367,9 @@
             });
         });
     </script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script><script>AOS.init({duration: 1000, once: true});</script></body>
-</html>
+</body>`;
+    resultHtml = resultHtml.replace('</body>', scripts);
+}
 
-
+fs.writeFileSync('index.html', resultHtml);
+console.log('Successfully updated index.html');
