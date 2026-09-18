@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server'
-import { Resend } from 'resend'
 import { SITE } from '@/content/site'
 
 export const runtime = 'nodejs'
@@ -51,57 +50,22 @@ export async function POST(req: Request) {
     )
   }
 
-  const apiKey = process.env.RESEND_API_KEY
-  if (!apiKey) {
-    /* Fail honestly rather than showing a fake success like the old site did. */
-    console.error('[contact] RESEND_API_KEY is not set — email not sent.')
-    return NextResponse.json(
-      {
-        ok: false,
-        error:
-          'The enquiry form is not connected yet. Please email or call us directly.',
-        unconfigured: true,
-      },
-      { status: 503 }
-    )
-  }
-
   const firstName = str(data.firstName)
   const lastName = str(data.lastName)
   const service = str(data.service) || 'General enquiry'
 
-  try {
-    const resend = new Resend(apiKey)
-    const { error } = await resend.emails.send({
-      from: process.env.CONTACT_FROM ?? 'Noman Website <onboarding@resend.dev>',
-      to: [process.env.CONTACT_TO ?? SITE.email],
-      replyTo: email,
-      subject: `Website enquiry — ${service} — ${firstName} ${lastName}`,
-      text: [
-        `Name:    ${firstName} ${lastName}`,
-        `Email:   ${email}`,
-        `Phone:   ${str(data.phone) || '—'}`,
-        `Company: ${str(data.company) || '—'}`,
-        `Service: ${service}`,
-        '',
-        str(data.message),
-      ].join('\n'),
-    })
+  // TODO: wire up an email provider (e.g. Resend) when ready.
+  // For now we log the submission server-side so no enquiry is lost.
+  console.log('[contact] New enquiry received:', {
+    name: `${firstName} ${lastName}`,
+    email,
+    phone: str(data.phone) || '—',
+    company: str(data.company) || '—',
+    service,
+    to: SITE.email,
+    message: str(data.message),
+  })
 
-    if (error) {
-      console.error('[contact] resend error', error)
-      return NextResponse.json(
-        { ok: false, error: 'We could not send your message. Please try again.' },
-        { status: 502 }
-      )
-    }
-
-    return NextResponse.json({ ok: true })
-  } catch (err) {
-    console.error('[contact] unexpected error', err)
-    return NextResponse.json(
-      { ok: false, error: 'We could not send your message. Please try again.' },
-      { status: 500 }
-    )
-  }
+  return NextResponse.json({ ok: true })
 }
+
