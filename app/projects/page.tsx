@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import PageHero from '@/components/sections/PageHero'
-import StatsBand from '@/components/sections/StatsBand'
+import WhyChooseUs from '@/components/sections/WhyChooseUs'
 import { CheckThis, NextUpGrid } from '@/components/CheckThis'
 import { Reveal, MaskedImage } from '@/components/motion'
 import { fadeUp } from '@/lib/motion'
@@ -96,7 +96,7 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      <StatsBand />
+      <WhyChooseUs />
 
       <NextUpGrid
         items={resolveLinks(['/services', '/certificates', '/contact']).map(l => ({
@@ -110,3 +110,4 @@ export default function ProjectsPage() {
     </>
   )
 }
+

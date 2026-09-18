@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import PageHero from '@/components/sections/PageHero'
-import StatsBand from '@/components/sections/StatsBand'
+import WhyChooseUs from '@/components/sections/WhyChooseUs'
 import Card from '@/components/ui/Card'
 import { CheckThis, NextUpGrid } from '@/components/CheckThis'
 import { Reveal, RevealGroup, RevealItem } from '@/components/motion'
@@ -94,7 +94,7 @@ export default function SolutionsPage() {
         </div>
       </section>
 
-      <StatsBand />
+      <WhyChooseUs />
 
       <NextUpGrid
         items={resolveLinks(SOLUTIONS_OVERVIEW.nextUp).map(l => ({
@@ -108,3 +108,4 @@ export default function SolutionsPage() {
     </>
   )
 }
+

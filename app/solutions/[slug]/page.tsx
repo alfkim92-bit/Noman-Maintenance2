@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import PageHero from '@/components/sections/PageHero'
-import StatsBand from '@/components/sections/StatsBand'
+import WhyChooseUs from '@/components/sections/WhyChooseUs'
 import ExplainerFigure from '@/components/ExplainerFigure'
 import Sidebar from '@/components/ui/Sidebar'
 import ScopeList from '@/components/ui/ScopeList'
@@ -261,7 +261,7 @@ export default async function SolutionPage({
         </div>
       </section>
 
-      <StatsBand />
+      <WhyChooseUs />
 
       <NextUpGrid
         items={resolveLinks(solution.nextUp).map(l => ({

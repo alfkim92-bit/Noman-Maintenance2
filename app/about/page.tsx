@@ -2,9 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import PageHero from '@/components/sections/PageHero'
-import StatsBand from '@/components/sections/StatsBand'
-import WhyNoman from '@/components/sections/WhyNoman'
-import Vision2030 from '@/components/sections/Vision2030'
+import WhyChooseUs from '@/components/sections/WhyChooseUs'
 import ClientLogos from '@/components/sections/ClientLogos'
 import { CheckThis, NextUpGrid } from '@/components/CheckThis'
 import { Reveal, RevealGroup, RevealItem, MaskedImage } from '@/components/motion'
@@ -84,9 +82,7 @@ export default function AboutPage() {
       </section>
 
       <ClientLogos />
-      <Vision2030 />
-      <StatsBand heading="Our achievements at a glance" />
-      <WhyNoman />
+      <WhyChooseUs />
 
       {/* Reach in Saudi Arabia */}
       <section className="section-y bg-[var(--bg-subtle)] blueprint">
@@ -161,3 +157,4 @@ export default function AboutPage() {
     </>
   )
 }
+
