@@ -1,0 +1,260 @@
+/* ============================================================================
+   Noman Maintenance Services — globals.css
+   Light theme design tokens + base + signature motif utilities.
+   Written for Tailwind v4 (@theme inline). If you scaffolded Tailwind v3,
+   delete the @theme block and use code/tailwind.config.ts instead — the raw
+   CSS variables below work identically in both.
+   ========================================================================== */
+
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------- tokens - */
+:root {
+  /* brand blue */
+  --blue-50:#F0F5FF;  --blue-100:#DEEAFE; --blue-200:#C2D6FC; --blue-300:#97B8F8;
+  --blue-400:#6494F1; --blue-500:#1E5AB8; --blue-600:#14499C; --blue-700:#0B3D91;
+  --blue-800:#092F70; --blue-900:#08234F; --blue-950:#041428;
+
+  /* accent orange */
+  --orange-50:#FFF6EC;  --orange-100:#FFE9D1; --orange-200:#FFD1A3;
+  --orange-300:#FFB26B; --orange-400:#FF9833; --orange-500:#FF7E00;
+  --orange-600:#E06A00; --orange-700:#B85400; --orange-800:#8E4104; --orange-900:#703509;
+
+  /* steel neutrals */
+  --steel-0:#FFFFFF;   --steel-25:#FBFCFE;  --steel-50:#F6F8FB;  --steel-100:#EEF2F7;
+  --steel-200:#E1E8F0; --steel-300:#CBD6E3; --steel-400:#9AAABF; --steel-500:#6E819A;
+  --steel-600:#52647D; --steel-700:#3C4C62; --steel-800:#27354A; --steel-900:#17233A;
+  --steel-950:#0C1524;
+
+  /* semantic */
+  --bg:var(--steel-0);
+  --bg-subtle:var(--steel-50);
+  --bg-inset:var(--steel-100);
+  --bg-invert:var(--blue-950);
+  --surface:var(--steel-0);
+  --border:var(--steel-200);
+  --border-strong:var(--steel-300);
+  --ink:var(--steel-900);
+  --ink-strong:var(--steel-950);
+  --ink-muted:var(--steel-600);
+  --ink-subtle:var(--steel-500);
+  --ink-invert:var(--steel-0);
+  --brand:var(--blue-700);
+  --brand-hover:var(--blue-800);
+  --accent:var(--orange-500);
+  --accent-hover:var(--orange-600);
+  --accent-soft:var(--orange-50);
+  --ring:color-mix(in srgb, var(--orange-500) 55%, transparent);
+
+  /* rhythm */
+  --section-y:clamp(4rem, 2rem + 8vw, 9rem);
+  --container:1280px;
+  --gutter:clamp(1.25rem, .75rem + 2vw, 2.5rem);
+
+  /* radius */
+  --r-sm:6px; --r-md:10px; --r-lg:14px; --r-xl:22px; --r-pill:999px;
+
+  /* shadow */
+  --sh-sm:0 1px 2px rgba(12,21,36,.06);
+  --sh-md:0 4px 16px -4px rgba(12,21,36,.10);
+  --sh-lg:0 18px 40px -12px rgba(12,21,36,.16);
+  --sh-xl:0 32px 64px -20px rgba(12,21,36,.22);
+  --sh-glow:0 10px 28px -10px rgba(255,126,0,.50);
+
+  /* motion */
+  --ease-out:cubic-bezier(.22,1,.36,1);
+  --ease-inout:cubic-bezier(.65,0,.35,1);
+  --d-micro:180ms; --d-ui:280ms; --d-reveal:640ms; --d-hero:900ms;
+
+  /* fluid type */
+  --fs-display-1:clamp(2.75rem, 1.35rem + 5.4vw, 6rem);
+  --fs-display-2:clamp(2.25rem, 1.30rem + 3.6vw, 4rem);
+  --fs-h1:clamp(2rem, 1.35rem + 2.5vw, 3.25rem);
+  --fs-h2:clamp(1.625rem, 1.2rem + 1.7vw, 2.5rem);
+  --fs-h3:clamp(1.25rem, 1.05rem + .8vw, 1.625rem);
+  --fs-lead:clamp(1.0625rem, 1rem + .35vw, 1.25rem);
+}
+
+/* ------------------------------------------------- Tailwind v4 theme map - */
+@theme inline {
+  --color-blue-50:var(--blue-50);   --color-blue-100:var(--blue-100);
+  --color-blue-200:var(--blue-200); --color-blue-300:var(--blue-300);
+  --color-blue-400:var(--blue-400); --color-blue-500:var(--blue-500);
+  --color-blue-600:var(--blue-600); --color-blue-700:var(--blue-700);
+  --color-blue-800:var(--blue-800); --color-blue-900:var(--blue-900);
+  --color-blue-950:var(--blue-950);
+
+  --color-orange-50:var(--orange-50);   --color-orange-100:var(--orange-100);
+  --color-orange-200:var(--orange-200); --color-orange-300:var(--orange-300);
+  --color-orange-400:var(--orange-400); --color-orange-500:var(--orange-500);
+  --color-orange-600:var(--orange-600); --color-orange-700:var(--orange-700);
+  --color-orange-800:var(--orange-800); --color-orange-900:var(--orange-900);
+
+  --color-steel-0:var(--steel-0);     --color-steel-25:var(--steel-25);
+  --color-steel-50:var(--steel-50);   --color-steel-100:var(--steel-100);
+  --color-steel-200:var(--steel-200); --color-steel-300:var(--steel-300);
+  --color-steel-400:var(--steel-400); --color-steel-500:var(--steel-500);
+  --color-steel-600:var(--steel-600); --color-steel-700:var(--steel-700);
+  --color-steel-800:var(--steel-800); --color-steel-900:var(--steel-900);
+  --color-steel-950:var(--steel-950);
+
+  --font-display:var(--font-display), "Archivo", system-ui, sans-serif;
+  --font-body:var(--font-body), "Inter", system-ui, sans-serif;
+  --font-arabic:var(--font-arabic), "IBM Plex Sans Arabic", system-ui, sans-serif;
+
+  --radius-sm:var(--r-sm); --radius-md:var(--r-md); --radius-lg:var(--r-lg);
+  --radius-xl:var(--r-xl);
+
+  --shadow-sm:var(--sh-sm); --shadow-md:var(--sh-md);
+  --shadow-lg:var(--sh-lg); --shadow-xl:var(--sh-xl);
+}
+
+/* ------------------------------------------------------------------ base - */
+/* NOTE: these element rules MUST sit in @layer base. Unlayered CSS outranks
+   every Tailwind layer, so an unlayered `h1 { color }` would beat `text-white`
+   and the hero headline would render near-black on the dark hero. The utility
+   classes further down stay deliberately unlayered — components override them
+   with `!` where needed (e.g. `.lead !text-white/85`). */
+@layer base {
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  /* Lenis drives scrolling; kill native smooth so they don't fight */
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-stopped { overflow: hidden; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body), Inter, system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;               /* no horizontal scroll at 320px */
+  }
+
+  h1,h2,h3,h4 {
+    font-family: var(--font-display), Archivo, system-ui, sans-serif;
+    color: var(--ink-strong);
+    line-height: 1.15;
+    letter-spacing: -.01em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; max-width: 68ch; }
+
+  /* Arabic — always via this class, never a bare span */
+  .font-arabic,
+  [lang="ar"] {
+    font-family: var(--font-arabic), "IBM Plex Sans Arabic", system-ui, sans-serif;
+    direction: rtl;
+    unicode-bidi: isolate;
+    letter-spacing: 0;
+  }
+
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: var(--r-sm);
+  }
+
+  ::selection { background: var(--orange-200); color: var(--ink-strong); }
+}
+
+/* ------------------------------------------------------------- utilities - */
+.container-x { width:100%; max-width:var(--container); margin-inline:auto; padding-inline:var(--gutter); }
+.section-y  { padding-block: var(--section-y); }
+
+.display-1 { font-family:var(--font-display); font-size:var(--fs-display-1); font-weight:800;
+             line-height:.96; letter-spacing:-.02em; text-transform:uppercase; }
+.display-2 { font-family:var(--font-display); font-size:var(--fs-display-2); font-weight:800;
+             line-height:1; letter-spacing:-.02em; text-transform:uppercase; }
+.lead      { font-size:var(--fs-lead); color:var(--ink-muted); }
+
+.eyebrow {
+  display:inline-flex; align-items:center; gap:.625rem;
+  font-size:.75rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ink-subtle);
+}
+.eyebrow::before { content:""; width:24px; height:2px; background:var(--accent); flex:none; }
+
+.stat-num { font-family:var(--font-display); font-weight:800; font-variant-numeric:tabular-nums;
+            color:var(--accent); letter-spacing:-.02em; }
+
+/* buttons — the three variants the components reference */
+.btn {
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+  min-height:48px; padding:.875rem 1.5rem;
+  border-radius:var(--r-sm); border:1.5px solid transparent;
+  font-weight:600; line-height:1; text-decoration:none; cursor:pointer;
+  transition: background-color var(--d-ui) var(--ease-out),
+              border-color var(--d-ui) var(--ease-out),
+              color var(--d-ui) var(--ease-out),
+              transform var(--d-ui) var(--ease-out),
+              box-shadow var(--d-ui) var(--ease-out);
+}
+.btn:active { transform: scale(.98) }
+
+/* orange fill + near-black label = 8.4:1. White on orange would fail AA. */
+.btn-primary { background:var(--accent); color:var(--steel-950); }
+.btn-primary:hover { background:var(--accent-hover); transform:translateY(-2px); box-shadow:var(--sh-glow); }
+
+.btn-secondary { border-color:var(--border-strong); color:var(--ink); background:transparent; }
+.btn-secondary:hover { border-color:var(--brand); background:var(--blue-50); }
+
+/* for use on dark hero scrims and dark bands */
+.btn-invert { background:transparent; border-color:rgba(255,255,255,.45); color:#fff; }
+.btn-invert:hover { background:#fff; border-color:#fff; color:var(--blue-900); transform:translateY(-2px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn:hover, .btn:active { transform:none }
+}
+
+/* MOTIF 1 — chevron rule (three angled bars) */
+.chevron-rule { display:inline-flex; gap:3px; flex:none; }
+.chevron-rule i {
+  display:block; width:3px; height:18px; border-radius:1px; transform:skewX(-18deg);
+  background:var(--accent);
+}
+.chevron-rule i:nth-child(2){ opacity:.4 } .chevron-rule i:nth-child(3){ opacity:.15 }
+
+/* MOTIF 2 — blueprint grid backing */
+.blueprint {
+  position:relative; isolation:isolate;
+}
+.blueprint::before {
+  content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+  background-image:
+    linear-gradient(to right, var(--steel-200) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--steel-200) 1px, transparent 1px);
+  background-size:32px 32px;
+  opacity:.30;
+  -webkit-mask-image:radial-gradient(120% 90% at 50% 0%, #000 35%, transparent 78%);
+          mask-image:radial-gradient(120% 90% at 50% 0%, #000 35%, transparent 78%);
+}
+
+/* MOTIF 3 — spec line above a heading */
+.spec-line { display:flex; align-items:center; gap:.75rem; color:var(--ink-subtle); }
+.spec-line::before { content:""; height:1px; width:clamp(32px,8vw,96px); background:var(--border-strong); }
+.spec-line::after  { content:""; height:10px; width:1px; background:var(--border-strong); }
+
+/* MOTIF 4 — corner brackets on feature images */
+.brackets { position:relative; }
+.brackets::before, .brackets::after {
+  content:""; position:absolute; width:18px; height:18px; border:2px solid var(--accent);
+}
+.brackets::before { top:-6px;  left:-6px;  border-right:0; border-bottom:0; }
+.brackets::after  { bottom:-6px; right:-6px; border-left:0;  border-top:0;    }
+
+/* --------------------------------------------------- reduced motion (req) - */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .parallax, .marquee { transform: none !important; }
+}
