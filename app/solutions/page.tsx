@@ -36,7 +36,6 @@ export default function SolutionsPage() {
                 {SOLUTIONS_OVERVIEW.whatWeDo.text}
               </p>
             </div>
-
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[var(--r-lg)] shadow-[var(--sh-md)]">
               <img
                 src="/assets/projects/ducting-nederman.jpeg"
@@ -54,7 +53,6 @@ export default function SolutionsPage() {
                 className="absolute inset-0 h-full w-full object-cover"
               />
             </div>
-
             <div className="p-4">
               <h2 className="text-[length:var(--fs-h3)] font-bold text-[var(--brand)] mb-4">
                 {SOLUTIONS_OVERVIEW.whyWeDoIt.heading}
@@ -67,10 +65,9 @@ export default function SolutionsPage() {
         </div>
 
         <div className="container-x mt-16 pt-8 border-t border-[var(--border)]">
-
           <RevealGroup
             step={0.07}
-            className="mt-12 grid gap-[clamp(1rem,.5rem+1.5vw,2rem)] sm:grid-cols-2 lg:grid-cols-3"
+            className="grid gap-[clamp(1rem,.5rem+1.5vw,2rem)] sm:grid-cols-2 lg:grid-cols-3"
           >
             {SOLUTIONS.map(s => (
               <RevealItem key={s.slug} variant={popIn}>

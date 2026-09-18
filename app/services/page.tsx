@@ -37,7 +37,6 @@ export default function ServicesPage() {
                 {SERVICE_OVERVIEW.whatWeDo.text}
               </p>
             </div>
-            
             <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[var(--r-md)]">
               <img
                 src="/assets/projects/power-plant-ei.jpeg"
@@ -55,7 +54,6 @@ export default function ServicesPage() {
                 className="absolute inset-0 h-full w-full object-cover"
               />
             </div>
-            
             <div className="bg-white/50 p-6 rounded-[var(--r-md)] border border-[var(--border)]">
               <h2 className="text-[length:var(--fs-h3)] font-bold text-[var(--brand)] mb-3">
                 {SERVICE_OVERVIEW.whyWeDoIt.heading}
@@ -67,9 +65,10 @@ export default function ServicesPage() {
           </Reveal>
         </div>
 
+        <div className="container-x mt-16 pt-8 border-t border-[var(--border)]">
           <RevealGroup
             step={0.07}
-            className="mt-12 grid gap-[clamp(1rem,.5rem+1.5vw,2rem)] sm:grid-cols-2"
+            className="grid gap-[clamp(1rem,.5rem+1.5vw,2rem)] sm:grid-cols-2"
           >
             {SERVICES.map(s => (
               <RevealItem key={s.slug} variant={popIn}>
