@@ -30,7 +30,7 @@ export const SITE = {
 
 /** Client-published stats — source: noman-rebuild/01-CONTENT.md §0 */
 export const STATS = [
-  { value: '90M+', label: 'Safe man-hours' },
+  { value: '350K+', label: 'Safe man-hours' },
   { value: '24+', label: 'Projects completed' },
   { value: '5+', label: 'Ongoing projects' },
   { value: '3+', label: 'Mega projects' },
@@ -38,7 +38,7 @@ export const STATS = [
 
 /** Home hero uses a variant with office count instead of mega projects. */
 export const HERO_STATS = [
-  { value: '90M+', label: 'Safe man-hours' },
+  { value: '350K+', label: 'Safe man-hours' },
   { value: '24+', label: 'Projects completed' },
   { value: '5+', label: 'Ongoing projects' },
   { value: '4', label: 'Regional offices' },
