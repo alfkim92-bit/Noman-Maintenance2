@@ -28,20 +28,20 @@ export const SITE = {
   addressStatus: 'pending' as const,
 } as const
 
-/** Qualitative stats for StatsBand */
+/** Client-published stats — source: noman-rebuild/01-CONTENT.md §0 */
 export const STATS = [
-  { value: 'Zero', label: 'Lost time incidents' },
-  { value: 'Turnkey', label: 'Project delivery' },
-  { value: 'Kingdom', label: 'Wide mobilisation' },
-  { value: 'Vision 2030', label: 'Aligned operations' },
+  { value: '90M+', label: 'Safe man-hours' },
+  { value: '24+', label: 'Projects completed' },
+  { value: '5+', label: 'Ongoing projects' },
+  { value: '3+', label: 'Mega projects' },
 ] as const
 
-/** Qualitative stats for HomeHero */
+/** Home hero uses a variant with office count instead of mega projects. */
 export const HERO_STATS = [
-  { value: 'Zero', label: 'Lost time incidents' },
-  { value: 'Turnkey', label: 'Project delivery' },
-  { value: 'Kingdom', label: 'Wide mobilisation' },
-  { value: 'Vision 2030', label: 'Aligned operations' },
+  { value: '90M+', label: 'Safe man-hours' },
+  { value: '24+', label: 'Projects completed' },
+  { value: '5+', label: 'Ongoing projects' },
+  { value: '4', label: 'Regional offices' },
 ] as const
 
 export const WHY_NOMAN = [

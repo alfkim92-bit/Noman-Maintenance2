@@ -1,10 +1,10 @@
-import { RevealGroup, RevealItem } from '@/components/motion'
+﻿import { RevealGroup, RevealItem } from '@/components/motion'
 import { fadeUp } from '@/lib/motion'
 import { STATS } from '@/content/site'
 
 export default function StatsBand({
-  heading = 'Our achievements at a glance',
-  lead = 'We measure our success by the value we bring to our clients and the impact we make in the industry.',
+  heading = 'The numbers that earned us the next contract',
+  lead = 'Built on a track record of safe man-hours, delivered projects and the kind of reliability that keeps clients coming back.',
   stats = STATS,
 }: {
   heading?: string
@@ -12,66 +12,56 @@ export default function StatsBand({
   stats?: readonly { value: string; label: string }[]
 }) {
   return (
-    <section className="relative overflow-hidden bg-[var(--bg-invert)] py-[clamp(4.5rem,8vw,8rem)] text-white">
-      {/* Dynamic Background */}
+    <section className="relative overflow-hidden bg-[var(--bg-subtle)] py-[clamp(4rem,7vw,7rem)]">
+      {/* Subtle blueprint grid */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-20"
+        className="pointer-events-none absolute inset-0 opacity-[.04]"
         style={{
           backgroundImage:
-            'linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)',
-          backgroundSize: '40px 40px',
-          maskImage:
-            'radial-gradient(100% 100% at 50% 0%, #000 20%, transparent 80%)',
-          WebkitMaskImage:
-            'radial-gradient(100% 100% at 50% 0%, #000 20%, transparent 80%)',
+            'linear-gradient(to right, var(--brand) 1px, transparent 1px), linear-gradient(to bottom, var(--brand) 1px, transparent 1px)',
+          backgroundSize: '48px 48px',
         }}
       />
-      <div className="absolute -left-40 top-0 h-96 w-96 rounded-full bg-[var(--accent)] opacity-10 blur-[120px]" />
-      <div className="absolute -right-40 bottom-0 h-96 w-96 rounded-full bg-[var(--blue-400)] opacity-10 blur-[120px]" />
+
+      {/* Orange accent line at top */}
+      <div className="absolute left-0 right-0 top-0 h-[3px] bg-gradient-to-r from-[var(--accent)] via-[var(--accent)] to-transparent opacity-80" />
 
       <div className="container-x relative z-10">
-        <div className="mx-auto max-w-[60ch] text-center">
-          <p className="inline-flex items-center gap-2 rounded-full border border-[var(--border-invert)] bg-white/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[var(--orange-300)] shadow-sm backdrop-blur-sm">
-            <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)] animate-pulse" /> At a glance
-          </p>
-          <h2 className="mt-6 text-[length:var(--fs-h2)] font-extrabold text-white">
-            {heading}
-          </h2>
-          <p className="lead mx-auto mt-4 max-w-[50ch] !text-white/70">
+        {/* Header — headline left, descriptor right */}
+        <div className="grid items-end gap-8 border-b border-[var(--border)] pb-10 lg:grid-cols-[1fr_auto]">
+          <div>
+            <p className="eyebrow text-[var(--accent)]">Proven performance</p>
+            <h2 className="mt-3 max-w-[22ch] text-[length:var(--fs-h2)] font-extrabold leading-[1.1] text-[var(--brand)]">
+              {heading}
+            </h2>
+          </div>
+          <p className="max-w-[36ch] text-[var(--ink-muted)] leading-relaxed lg:text-right">
             {lead}
           </p>
         </div>
 
+        {/* Stats row — divided by thin rules, no cards */}
         <RevealGroup
-          step={0.12}
-          className="mt-[clamp(3.5rem,6vw,5rem)] grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
+          step={0.1}
+          className="grid grid-cols-2 divide-x divide-[var(--border)] lg:grid-cols-4"
         >
-          {stats.map((s, i) => (
+          {stats.map((s) => (
             <RevealItem key={s.label} variant={fadeUp}>
-              <div className="group relative overflow-hidden rounded-[var(--r-lg)] border border-white/10 bg-white/5 p-8 transition-all duration-500 hover:-translate-y-2 hover:border-white/20 hover:bg-white/10 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
-                {/* Decorative corner brackets */}
-                <div className="absolute left-0 top-0 h-4 w-4 border-l-2 border-t-2 border-[var(--accent)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <div className="absolute bottom-0 right-0 h-4 w-4 border-b-2 border-r-2 border-[var(--accent)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                
-                <div className="relative z-10">
-                  <div className="text-[clamp(2rem,1.2rem+2.6vw,3rem)] font-extrabold leading-none tracking-tight text-white transition-transform duration-500 group-hover:scale-105 group-hover:text-[var(--orange-300)]">
-                    {s.value}
-                  </div>
-                  <div className="mt-4 flex items-center gap-3">
-                    <div className="h-[2px] w-8 bg-[var(--accent)] transition-all duration-300 group-hover:w-12" />
-                    <div className="text-[.85rem] font-semibold uppercase tracking-wider text-white/80 transition-colors duration-300 group-hover:text-white">
-                      {s.label}
-                    </div>
-                  </div>
+              <div className="group px-8 py-10 transition-colors duration-300 first:pl-0 hover:bg-white">
+                <div className="text-[clamp(3rem,2rem+3vw,5rem)] font-black leading-none tracking-[-0.03em] text-[var(--brand)] transition-colors duration-300 group-hover:text-[var(--accent)]">
+                  {s.value}
                 </div>
-                
-                {/* Glow effect on hover */}
-                <div className="absolute inset-0 z-0 bg-gradient-to-br from-[var(--accent)] to-transparent opacity-0 mix-blend-overlay transition-opacity duration-500 group-hover:opacity-10" />
+                <div className="my-4 h-[2px] w-8 bg-[var(--accent)] transition-all duration-500 group-hover:w-16" />
+                <div className="text-[.8rem] font-bold uppercase tracking-[.14em] text-[var(--ink-muted)] transition-colors duration-300 group-hover:text-[var(--ink)]">
+                  {s.label}
+                </div>
               </div>
             </RevealItem>
           ))}
         </RevealGroup>
+
+        <div className="border-t border-[var(--border)]" />
       </div>
     </section>
   )
