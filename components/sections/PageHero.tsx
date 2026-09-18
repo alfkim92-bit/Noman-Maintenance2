@@ -10,12 +10,14 @@ import Breadcrumbs, { type Crumb } from '@/components/layout/Breadcrumbs'
  * Every inner page opens with this. Short (no parallax — inner heroes don't
  * earn it), background wipes up behind a clip mask, title splits word by word.
  */
+const DEFAULT_HERO = '/assets/hero/plant-wide.jpg'
+
 export default function PageHero({
   eyebrow,
   title,
   h1,
   lead,
-  image = '/assets/hero/plant-wide.jpg',
+  image = DEFAULT_HERO,
   trail,
 }: {
   eyebrow?: string
@@ -29,6 +31,11 @@ export default function PageHero({
 }) {
   const prefersReduced = useReducedMotion()
 
+  /* A placeholder schematic is a line drawing — it turns to mud under the hero
+     scrim. Until real photography lands, those pages use the plant photo.
+     Resolves itself automatically once the placeholders are replaced. */
+  const heroImage = image.includes('/_placeholder/') ? DEFAULT_HERO : image
+
   return (
     <section className="relative isolate overflow-hidden bg-[var(--blue-950)] text-white">
       <motion.div
@@ -40,7 +47,7 @@ export default function PageHero({
         style={{ willChange: 'clip-path' }}
       >
         <Image
-          src={image}
+          src={heroImage}
           alt=""
           fill
           priority
