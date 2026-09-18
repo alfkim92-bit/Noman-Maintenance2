@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { NAV, NAV_SIMPLE } from '@/content/links'
 import Brand from './Brand'
-import MegaMenu from './MegaMenu'
+
 import MobileNav from './MobileNav'
 
 /** Hover-intent delays — long enough to cross the gap to the panel. */
@@ -85,12 +85,14 @@ export default function Navbar() {
               <TopLink href="/" label="Home" active={pathname === '/'} />
 
               {NAV.map(section => {
-                const panelId = `mega-${section.label.toLowerCase()}`
+                const panelId = `nav-dropdown-${section.label.toLowerCase()}`
                 const open = openMenu === section.label
                 return (
                   <div
                     key={section.label}
+                    className="relative"
                     onPointerEnter={() => scheduleOpen(section.label)}
+                    onPointerLeave={scheduleClose}
                   >
                     <button
                       type="button"
@@ -116,6 +118,33 @@ export default function Navbar() {
                       </span>
                       {isActive(section.href) && <ActiveBar />}
                     </button>
+
+                    {/* Simple Dropdown Menu */}
+                    <div
+                      id={panelId}
+                      className={`absolute left-0 top-full mt-1 w-[260px] origin-top-left rounded-[var(--r-md)] border border-[var(--border)] bg-white py-1.5 shadow-[var(--sh-md)] transition-all duration-200 ${
+                        open
+                          ? 'pointer-events-auto scale-100 opacity-100'
+                          : 'pointer-events-none scale-95 opacity-0'
+                      }`}
+                    >
+                      <Link
+                        href={section.overview.href}
+                        className="block px-4 py-2.5 text-[14px] font-bold text-[var(--brand)] transition-colors hover:bg-[var(--bg-subtle)]"
+                      >
+                        {section.label} Overview
+                      </Link>
+                      <div className="mx-3 my-1 h-[1px] bg-[var(--border)]" />
+                      {section.items.map(item => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className="block px-4 py-2.5 text-[14px] font-medium text-[var(--ink-strong)] transition-colors hover:bg-[var(--bg-subtle)] hover:text-[var(--brand)]"
+                        >
+                          {item.title}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 )
               })}
@@ -155,21 +184,6 @@ export default function Navbar() {
             </div>
           </div>
         </div>
-
-        {NAV.map(section => (
-          <MegaMenu
-            key={section.label}
-            data={section}
-            open={openMenu === section.label}
-            panelId={`mega-${section.label.toLowerCase()}`}
-            onClose={() => {
-              clear()
-              setOpenMenu(null)
-            }}
-            onPointerEnter={clear}
-            onPointerLeave={scheduleClose}
-          />
-        ))}
       </header>
 
       <MobileNav open={mobileOpen} onClose={() => setMobileOpen(false)} />
