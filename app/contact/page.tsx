@@ -10,7 +10,7 @@ import { resolveLinks } from '@/content/links'
 export const metadata: Metadata = {
   title: 'Contact Us',
   description:
-    'Talk to Noman Maintenance Services Company about mechanical, electrical, civil or scaffolding scopes in Saudi Arabia, the UAE and Bahrain.',
+    'Talk to Noman Maintenance Services Company about mechanical, electrical, civil or scaffolding scopes in Saudi Arabia.',
   alternates: { canonical: '/contact' },
 }
 

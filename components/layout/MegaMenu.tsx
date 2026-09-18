@@ -80,12 +80,36 @@ export default function MegaMenu({
         >
           <div className="container-x grid gap-8 py-8 lg:grid-cols-[1fr_300px]">
             <ul className="grid gap-1 sm:grid-cols-2">
+              <motion.li
+                initial={prefersReduced ? false : { opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: prefersReduced ? 0 : 0, duration: 0.24 }}
+              >
+                <Link
+                  href={data.overview.href}
+                  onClick={onClose}
+                  className="group flex flex-col gap-1 rounded-[var(--r-md)] p-3 transition-colors hover:bg-[var(--bg-subtle)]"
+                >
+                  <span className="flex items-center gap-2 font-semibold text-[var(--brand)]">
+                    {data.label} overview
+                    <span
+                      aria-hidden
+                      className="text-[var(--accent)] opacity-0 transition-all duration-200 group-hover:translate-x-1 group-hover:opacity-100"
+                    >
+                      →
+                    </span>
+                  </span>
+                  <span className="text-sm text-[var(--ink-muted)]">
+                    {data.overview.blurb}
+                  </span>
+                </Link>
+              </motion.li>
               {data.items.map((item, i) => (
                 <motion.li
                   key={item.href}
                   initial={prefersReduced ? false : { opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: prefersReduced ? 0 : 0.03 * i, duration: 0.24 }}
+                  transition={{ delay: prefersReduced ? 0 : 0.03 * (i + 1), duration: 0.24 }}
                 >
                   <Link
                     href={item.href}

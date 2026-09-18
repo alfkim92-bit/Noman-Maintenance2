@@ -1,68 +1,46 @@
 'use client'
 // ============================================================================
 // components/SmoothScroll.tsx
-// Lenis smooth scrolling, correctly married to GSAP ScrollTrigger.
 //
-//   npm i lenis gsap
+// Deliberately NOT smooth-scrolling any more.
 //
-// NOTE ON GSAP LICENSING: ScrollTrigger is free. SplitText and ScrollSmoother
-// are Club GreenSock (paid) — do NOT import them. This project uses its own
-// word splitter (components/motion → SplitText) and Lenis instead.
+// This originally wired Lenis into GSAP ScrollTrigger. In practice the
+// interpolated scroll felt laggy and detached from the wheel/trackpad — the
+// "glitchy" feel the client reported — and it is a common accessibility
+// complaint besides. Native scrolling is instant, matches the OS, never fights
+// the compositor, and cannot desync from ScrollTrigger.
 //
-// Mount once, inside app/layout.tsx, wrapping {children}.
+// What remains is the part that was actually load-bearing: recalculating
+// ScrollTrigger once webfonts have settled, and after each route change.
 // ============================================================================
 
 import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
-import Lenis from 'lenis'
-import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import gsap from 'gsap'
 
 gsap.registerPlugin(ScrollTrigger)
 
-let lenisSingleton: Lenis | null = null
-export const getLenis = () => lenisSingleton
-
-export default function SmoothScroll({ children }: { children: React.ReactNode }) {
+export default function SmoothScroll({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   const pathname = usePathname()
 
   useEffect(() => {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduce) return   // native scrolling, no smoothing, no pins
-
-    const lenis = new Lenis({
-      duration: 1.05,
-      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // expo-out
-      smoothWheel: true,
-      syncTouch: false,          // keep native momentum on iOS — smoother there
-      touchMultiplier: 1.6,
-    })
-    lenisSingleton = lenis
-
-    // Drive ScrollTrigger from Lenis, and Lenis from GSAP's ticker.
-    lenis.on('scroll', ScrollTrigger.update)
-    const raf = (time: number) => lenis.raf(time * 1000)
-    gsap.ticker.add(raf)
-    gsap.ticker.lagSmoothing(0)
-
-    // Recalculate after webfonts settle, otherwise pins land at wrong offsets.
+    // Pin offsets computed against fallback-font layout land wrong once the
+    // real fonts swap in.
     const refresh = () => ScrollTrigger.refresh()
     document.fonts?.ready.then(refresh)
     window.addEventListener('load', refresh)
-
-    return () => {
-      window.removeEventListener('load', refresh)
-      gsap.ticker.remove(raf)
-      lenis.destroy()
-      lenisSingleton = null
-    }
+    return () => window.removeEventListener('load', refresh)
   }, [])
 
-  // On route change: jump to top and re-measure every trigger.
   useEffect(() => {
-    lenisSingleton?.scrollTo(0, { immediate: true })
-    ScrollTrigger.getAll().forEach(t => t.kill())
-    requestAnimationFrame(() => ScrollTrigger.refresh())
+    // New route, new element heights.
+    const id = requestAnimationFrame(() => ScrollTrigger.refresh())
+    return () => cancelAnimationFrame(id)
   }, [pathname])
 
   return <>{children}</>

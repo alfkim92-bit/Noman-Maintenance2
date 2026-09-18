@@ -26,14 +26,47 @@ export default function SolutionsPage() {
       />
 
       <section className="section-y bg-[var(--bg)]">
-        <div className="container-x">
-          <Reveal variant={fadeUp} className="max-w-[68ch]">
-            {SOLUTIONS_OVERVIEW.body.map(p => (
-              <p key={p} className="mb-5 text-[1.0625rem] leading-[1.75]">
-                {p}
+        <div className="container-x grid items-start gap-[clamp(2rem,5vw,4rem)] lg:grid-cols-[1fr_1.15fr]">
+          <Reveal variant={fadeUp} className="flex flex-col gap-8">
+            <div className="bg-[var(--bg-subtle)] p-8 rounded-[var(--r-lg)] border-l-4 border-[var(--brand)] shadow-sm">
+              <h2 className="text-[length:var(--fs-h3)] font-bold text-[var(--brand)] mb-4">
+                {SOLUTIONS_OVERVIEW.whatWeDo.heading}
+              </h2>
+              <p className="text-[1.0625rem] leading-[1.75] text-[var(--ink-muted)]">
+                {SOLUTIONS_OVERVIEW.whatWeDo.text}
               </p>
-            ))}
+            </div>
+
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[var(--r-lg)] shadow-[var(--sh-md)]">
+              <img
+                src="/assets/projects/ducting-nederman.jpeg"
+                alt="Engineered solutions"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
           </Reveal>
+
+          <Reveal variant={fadeUp} className="flex flex-col gap-8 lg:mt-16">
+            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[var(--r-lg)] shadow-[var(--sh-md)] border-2 border-white">
+              <img
+                src="/assets/services/ei.jpg"
+                alt="System installation and verification"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
+
+            <div className="p-4">
+              <h2 className="text-[length:var(--fs-h3)] font-bold text-[var(--brand)] mb-4">
+                {SOLUTIONS_OVERVIEW.whyWeDoIt.heading}
+              </h2>
+              <p className="text-[1.0625rem] leading-[1.75] text-[var(--ink-strong)]">
+                {SOLUTIONS_OVERVIEW.whyWeDoIt.text}
+              </p>
+            </div>
+          </Reveal>
+        </div>
+
+        <div className="container-x mt-16 pt-8 border-t border-[var(--border)]">
 
           <RevealGroup
             step={0.07}

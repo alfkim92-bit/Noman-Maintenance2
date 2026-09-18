@@ -50,7 +50,7 @@ export const SERVICES: Service[] = [
       'Consultancy services',
       'Site supervision',
     ],
-    image: '/assets/_placeholder/PLACEHOLDER__services-engineering.png',
+    image: '/assets/projects/power-plant-ei.jpeg',
     imageAlt: 'Engineers reviewing project drawings',
     metaDescription:
       'Basic and detailed engineering, FEED, feasibility studies, as-built packages and site supervision for industrial projects in Saudi Arabia and the Gulf.',
@@ -81,7 +81,7 @@ export const SERVICES: Service[] = [
       'Road pavement and landscaping',
       'Pre-engineered structure buildings',
     ],
-    image: '/assets/_placeholder/PLACEHOLDER__services-civil.png',
+    image: '/assets/projects/steam-turbine-erection.jpeg',
     imageAlt: 'Reinforced concrete foundation works on an industrial site',
     metaDescription:
       'Industrial civil works in Saudi Arabia: equipment foundations, pipe racks, duct banks, earthworks, roads, warehousing and pre-engineered buildings.',
@@ -161,7 +161,7 @@ export const SERVICES: Service[] = [
     metaDescription:
       'Electrical and instrumentation contracting: HV/MV/LV switchgear, transformers, DCS/PLC/ESD automation, SCADA integration, field instruments and loop checks.',
     explainer: {
-      src: '/assets/_placeholder/PLACEHOLDER__explainer-ei-panel.png',
+      src: '/assets/projects/ducting-nederman.jpeg',
       alt: 'Annotated elevation of a switchgear and control panel line-up',
       caption:
         'A typical substation and control line-up, incomer to field. Hover or tap a number to highlight it.',
@@ -187,10 +187,14 @@ export const SERVICE_OVERVIEW = {
   eyebrow: 'Our capabilities',
   h1: 'Industrial services under one contract',
   lead: 'From detailed engineering through construction, mechanical erection and electrical & instrumentation works to commissioning — Noman covers the full delivery chain, so your project has one accountable contractor instead of four.',
-  body: [
-    'Noman Maintenance Services Company works across plants, refineries, power stations and industrial infrastructure in Saudi Arabia and the wider Gulf. Our teams mobilise out of Jubail and Riyadh, supported by offices in Dubai and Manama, and work to the QA/QC and HSE regimes the region’s operators expect.',
-    'Every service below can be contracted on its own or bundled into a single turnkey scope. When the work spans trades — a tie-in that needs civil, mechanical and instrumentation crews in sequence — bundling is usually what keeps the schedule.',
-  ],
+  whatWeDo: {
+    heading: 'Engineered for the Kingdom',
+    text: 'Noman Maintenance Services Company works across plants, refineries, power stations and industrial infrastructure in Saudi Arabia. Our teams mobilise out of Jubail, Riyadh, and Dammam, bringing extensive experience in heavy civil foundations, pre-engineered buildings, rotating equipment alignment, and HV/MV switchgear installations.',
+  },
+  whyWeDoIt: {
+    heading: 'Why turnkey delivery matters',
+    text: 'Every service below can be contracted on its own or bundled into a single turnkey scope. When the work spans trades — such as a complex tie-in that requires civil groundwork, mechanical fabrication, and sensitive instrumentation — bundling your requirements with Noman eliminates friction between contractors. This integrated approach is consistently what keeps critical plant shutdowns and turnarounds on schedule.',
+  },
   metaDescription:
     'Engineering, civil construction, mechanical erection and electrical & instrumentation works for plants, refineries and power projects across Saudi Arabia.',
   checkThis: { href: '/solutions', label: 'Solutions overview' },

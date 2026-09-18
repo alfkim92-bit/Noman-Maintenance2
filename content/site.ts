@@ -22,28 +22,26 @@ export const SITE = {
   email: 'info@nomanksa.com',
   url: 'https://www.nomanksa.com',
   offices: [
-    { country: 'Saudi Arabia', cities: ['Jubail', 'Riyadh'] },
-    { country: 'UAE', cities: ['Dubai'] },
-    { country: 'Bahrain', cities: ['Manama'] },
+    { country: 'Saudi Arabia', cities: ['Jubail', 'Riyadh', 'Dammam'] },
   ],
   /** Rendered as a TODO-CLIENT placeholder until Noman supplies the real one. */
   addressStatus: 'pending' as const,
 } as const
 
-/** 90M+ / 24+ / 5+ / 3+ — the four numbers the client publishes. */
+/** Qualitative stats for StatsBand */
 export const STATS = [
-  { value: '90M+', label: 'Safe man-hours' },
-  { value: '24+', label: 'Projects completed' },
-  { value: '5+', label: 'Ongoing projects' },
-  { value: '3+', label: 'Mega projects' },
+  { value: 'Zero', label: 'Lost time incidents' },
+  { value: 'Turnkey', label: 'Project delivery' },
+  { value: 'Kingdom', label: 'Wide mobilisation' },
+  { value: 'Vision 2030', label: 'Aligned operations' },
 ] as const
 
-/** Home hero uses a variant with office count instead of mega projects. */
+/** Qualitative stats for HomeHero */
 export const HERO_STATS = [
-  { value: '90M+', label: 'Safe man-hours' },
-  { value: '24+', label: 'Projects completed' },
-  { value: '5+', label: 'Ongoing projects' },
-  { value: '4', label: 'Regional offices' },
+  { value: 'Zero', label: 'Lost time incidents' },
+  { value: 'Turnkey', label: 'Project delivery' },
+  { value: 'Kingdom', label: 'Wide mobilisation' },
+  { value: 'Vision 2030', label: 'Aligned operations' },
 ] as const
 
 export const WHY_NOMAN = [
@@ -57,7 +55,7 @@ export const WHY_NOMAN = [
   },
   {
     title: 'Timely and reliable',
-    body: '90M+ man-hours delivered with schedule and safety performance we can evidence.',
+    body: 'Turnkey projects delivered with schedule and safety performance we can evidence.',
   },
 ] as const
 

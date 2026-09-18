@@ -8,7 +8,7 @@ import Vision2030 from '@/components/sections/Vision2030'
 import Card from '@/components/ui/Card'
 import { CheckThis, NextUpGrid } from '@/components/CheckThis'
 import { SectionHeader } from '@/components/layout/Section'
-import { MaskedImage, RevealGroup, RevealItem, ScrollProgress } from '@/components/motion'
+import { MaskedImage, RevealGroup, RevealItem } from '@/components/motion'
 import { popIn } from '@/lib/motion'
 import { SERVICES } from '@/content/services'
 import { SOLUTIONS } from '@/content/solutions'
@@ -43,7 +43,6 @@ const localBusinessLd = {
 export default function HomePage() {
   return (
     <>
-      <ScrollProgress />
       <HomeHero />
 
       {/* ------------------------------------------------- capabilities -- */}

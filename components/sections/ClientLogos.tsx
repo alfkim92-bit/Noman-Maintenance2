@@ -51,7 +51,7 @@ export default function ClientLogos() {
     <section className="border-y border-[var(--border)] bg-[var(--bg-subtle)] py-12">
       <div className="container-x">
         <h2 className="text-center text-[.7rem] font-bold uppercase tracking-[.18em] text-[var(--ink-subtle)]">
-          Our global clients
+          Our clients
         </h2>
 
         <div className="mt-8 overflow-hidden">

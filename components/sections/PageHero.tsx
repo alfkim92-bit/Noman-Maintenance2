@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import { motion, useReducedMotion } from 'framer-motion'
-import { SplitText } from '@/components/motion'
 import { EASE, clipUp, reduced } from '@/lib/motion'
 import Breadcrumbs, { type Crumb } from '@/components/layout/Breadcrumbs'
 
@@ -85,13 +84,26 @@ export default function PageHero({
           </motion.p>
         )}
 
-        <SplitText
-          as={h1 ? 'h2' : 'h1'}
-          text={title}
-          className="display-2 mt-4 max-w-[18ch] text-white"
-          step={0.045}
-          delay={0.25}
-        />
+        {/* Plain fade, not a split reveal — see the note in HomeHero. */}
+        {h1 ? (
+          <motion.h2
+            className="display-2 mt-4 max-w-[18ch] text-white"
+            initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, ease: EASE.out, delay: 0.22 }}
+          >
+            {title}
+          </motion.h2>
+        ) : (
+          <motion.h1
+            className="display-2 mt-4 max-w-[18ch] text-white"
+            initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, ease: EASE.out, delay: 0.22 }}
+          >
+            {title}
+          </motion.h1>
+        )}
 
         {h1 && (
           <motion.h1

@@ -88,7 +88,7 @@ export default function AboutPage() {
       <StatsBand heading="Our achievements at a glance" />
       <WhyNoman />
 
-      {/* Global reach */}
+      {/* Reach in Saudi Arabia */}
       <section className="section-y bg-[var(--bg-subtle)] blueprint">
         <div className="container-x">
           <Reveal variant={fadeUp}>
@@ -96,11 +96,11 @@ export default function AboutPage() {
               <span className="eyebrow ml-3">Our strategic offices</span>
             </p>
             <h2 className="mt-4 text-[length:var(--fs-h2)] font-extrabold">
-              Our global reach
+              Reach in Saudi Arabia
             </h2>
             <p className="lead mt-4">
               This network lets us mobilise locally and support projects across
-              the GCC without losing the supervision that keeps a scope on
+              the Kingdom without losing the supervision that keeps a scope on
               schedule.
             </p>
           </Reveal>
@@ -138,7 +138,7 @@ export default function AboutPage() {
               <div className="relative mx-auto aspect-[16/10] w-full max-w-[560px]">
                 <Image
                   src="/assets/brand/world-map.webp"
-                  alt="Map showing Noman's offices across Saudi Arabia, the UAE and Bahrain"
+                  alt="Map showing Noman's offices across Saudi Arabia"
                   fill
                   sizes="(max-width: 1024px) 90vw, 560px"
                   className="object-contain opacity-90"

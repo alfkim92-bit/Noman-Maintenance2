@@ -27,14 +27,45 @@ export default function ServicesPage() {
       />
 
       <section className="section-y bg-[var(--bg)]">
-        <div className="container-x">
-          <Reveal variant={fadeUp} className="max-w-[68ch]">
-            {SERVICE_OVERVIEW.body.map(p => (
-              <p key={p} className="mb-5 text-[1.0625rem] leading-[1.75]">
-                {p}
+        <div className="container-x grid items-start gap-[clamp(2rem,5vw,4rem)] lg:grid-cols-[1.15fr_1fr]">
+          <Reveal variant={fadeUp} className="flex flex-col gap-8">
+            <div>
+              <h2 className="text-[length:var(--fs-h3)] font-bold text-[var(--brand)] mb-3">
+                {SERVICE_OVERVIEW.whatWeDo.heading}
+              </h2>
+              <p className="text-[1.0625rem] leading-[1.75] text-[var(--ink)]">
+                {SERVICE_OVERVIEW.whatWeDo.text}
               </p>
-            ))}
+            </div>
+            
+            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[var(--r-md)]">
+              <img
+                src="/assets/projects/power-plant-ei.jpeg"
+                alt="Noman service operations"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
           </Reveal>
+
+          <Reveal variant={fadeUp} className="flex flex-col gap-8 lg:mt-12">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[var(--r-md)] border-l-4 border-[var(--accent)]">
+              <img
+                src="/assets/projects/steam-turbine-erection.jpeg"
+                alt="Engineering and design works"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
+            
+            <div className="bg-white/50 p-6 rounded-[var(--r-md)] border border-[var(--border)]">
+              <h2 className="text-[length:var(--fs-h3)] font-bold text-[var(--brand)] mb-3">
+                {SERVICE_OVERVIEW.whyWeDoIt.heading}
+              </h2>
+              <p className="text-[1.0625rem] leading-[1.75] text-[var(--ink)]">
+                {SERVICE_OVERVIEW.whyWeDoIt.text}
+              </p>
+            </div>
+          </Reveal>
+        </div>
 
           <RevealGroup
             step={0.07}

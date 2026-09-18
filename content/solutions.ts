@@ -85,7 +85,7 @@ export const SOLUTIONS: Solution[] = [
       'Handover documentation and load ratings issued with the completed scaffold',
     ],
     explainer: {
-      src: '/assets/_placeholder/PLACEHOLDER__explainer-frame-scaffold.png',
+      src: '/assets/services/mechanical.jpg',
       alt: 'Annotated diagram of an erected facade frame scaffold',
       caption:
         'The six components that make a compliant facade lift. Hover or tap a number to highlight it.',
@@ -99,7 +99,7 @@ export const SOLUTIONS: Solution[] = [
       ],
     },
     download: { label: 'Frame scaffold data sheet', status: 'pending' },
-    image: '/assets/_placeholder/PLACEHOLDER__solutions-construction-scaffolds.png',
+    image: '/assets/services/mechanical.jpg',
     imageAlt: 'Facade scaffolding erected against a building elevation',
     metaDescription:
       'Facade and frame scaffolding supplied and erected in Saudi Arabia — fast-erect frame systems and modular ring-lock scaffolds with engineered anchorage.',
@@ -171,7 +171,7 @@ export const SOLUTIONS: Solution[] = [
       },
     ],
     explainer: {
-      src: '/assets/_placeholder/PLACEHOLDER__explainer-suspended-scaffold.png',
+      src: '/assets/projects/steam-turbine-erection.jpeg',
       alt: 'Annotated diagram of a suspended working platform hung beneath a bridge deck',
       caption:
         'How the deck is carried when there is no ground support. Hover or tap a number to highlight it.',
@@ -185,7 +185,7 @@ export const SOLUTIONS: Solution[] = [
       ],
     },
     download: { label: 'Suspended scaffold technical info', status: 'pending' },
-    image: '/assets/_placeholder/PLACEHOLDER__solutions-suspended-scaffolds.png',
+    image: '/assets/projects/steam-turbine-erection.jpeg',
     imageAlt: 'Suspended working platform beneath a bridge deck',
     metaDescription:
       'Suspended access platforms for bridge soffits, pressure vessels, refinery structures and ship hulls — engineered, erected and supported by Noman in the Gulf.',
@@ -220,7 +220,7 @@ export const SOLUTIONS: Solution[] = [
       'Containerised water plants',
     ],
     explainer: {
-      src: '/assets/_placeholder/PLACEHOLDER__explainer-water-treatment.png',
+      src: '/assets/services/ei.jpg',
       alt: 'Annotated process flow diagram of an industrial water treatment train',
       caption:
         'A typical treatment train, left to right. Hover or tap a number to highlight a stage.',
@@ -233,7 +233,7 @@ export const SOLUTIONS: Solution[] = [
         { n: 6, x: 91, y: 39, label: 'Treated water storage', detail: 'reuse, discharge or process make-up' },
       ],
     },
-    image: '/assets/_placeholder/PLACEHOLDER__solutions-water-treatment.png',
+    image: '/assets/services/ei.jpg',
     imageAlt: 'Industrial water treatment skid',
     metaDescription:
       'Industrial water treatment for Gulf plants: MBR and MBBR systems, reverse osmosis, ultrafiltration, dosing, gas chlorination and containerised treatment plants.',
@@ -265,7 +265,7 @@ export const SOLUTIONS: Solution[] = [
         verify: 'Supplier warranty and service-life claim — confirm terms before publishing.',
       },
     ],
-    image: '/assets/_placeholder/PLACEHOLDER__solutions-floating-cover.png',
+    image: '/assets/projects/ducting-nederman.jpeg',
     imageAlt: 'Modular floating cover panels on an open water surface',
     metaDescription:
       'Modular floating covers for surge ponds, lagoons and open tanks — reducing evaporation, odour, VOC release and algae growth without a fixed roof structure.',
@@ -296,7 +296,7 @@ export const SOLUTIONS: Solution[] = [
       'Pump heat exchanger packages',
       'Steam sampling systems',
     ],
-    image: '/assets/_placeholder/PLACEHOLDER__solutions-heat-transfer.png',
+    image: '/assets/projects/power-plant-ei.jpeg',
     imageAlt: 'Process heat transfer and temperature control package',
     metaDescription:
       'Process heat transfer packages: hot oil and water temperature control, central and portable chillers, cooling towers, glycol feed and heat exchanger units.',
@@ -336,7 +336,7 @@ export const SOLUTIONS: Solution[] = [
       'Lower make-up water expense',
       'Reduced water hammering',
     ],
-    image: '/assets/_placeholder/PLACEHOLDER__solutions-steam-traps.png',
+    image: '/assets/services/mechanical.jpg',
     imageAlt: 'Venturi steam trap installed on a steam line',
     metaDescription:
       'Venturi fixed-orifice steam traps with no moving parts — reducing steam loss, make-up water cost, CO₂ emissions and steam trap maintenance across plant.',
@@ -367,7 +367,7 @@ export const SOLUTIONS: Solution[] = [
       'Equipment impact simulation',
       'Plant operations training',
     ],
-    image: '/assets/_placeholder/PLACEHOLDER__solutions-simulation.png',
+    image: '/assets/services/ei.jpg',
     imageAlt: 'Operator training simulator console',
     metaDescription:
       'Engineering simulation for verification and validation, control system testing, operating procedure development and operator training on upset conditions.',
@@ -385,9 +385,14 @@ export const SOLUTIONS_OVERVIEW = {
   eyebrow: 'Engineered systems',
   h1: 'Specialist systems, supplied and supported',
   lead: 'Alongside our contracting services, Noman supplies, installs and maintains a portfolio of engineered systems — access and scaffolding, water treatment, heat transfer, steam efficiency and simulation. Each one is chosen because it solves a problem our clients actually have on site.',
-  body: [
-    'Every system below can be supplied on its own, or installed and commissioned by our own crews as part of a larger scope. Where a solution needs design verification — load calculations for a suspended platform, a process flow for a treatment plant — that work is done in-house by our engineering team.',
-  ],
+  whatWeDo: {
+    heading: 'Systems for site-specific challenges',
+    text: 'Our portfolio includes engineered frame and suspended scaffolding, industrial water treatment facilities utilizing Reverse Osmosis and MBR technology, venturi steam traps for thermal efficiency, and modular floating covers for surge ponds.',
+  },
+  whyWeDoIt: {
+    heading: 'In-house engineering & verification',
+    text: 'Every system below can be supplied on its own, or seamlessly installed and commissioned by our own crews as part of a larger scope. Safety and compliance are paramount; where a solution needs design verification — such as engineered load calculations for a suspended platform, computational fluid dynamics (CFD) for process flow, or Scaftag inspections for scaffolding — that work is executed and validated in-house by our engineering team before anything reaches the site.',
+  },
   metaDescription:
     'Scaffolding, water treatment, floating covers, heat transfer, venturi steam traps and engineering simulation — engineered systems supplied and installed by Noman.',
   checkThis: { href: '/services', label: 'Service overview' },

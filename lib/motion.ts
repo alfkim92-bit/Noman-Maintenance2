@@ -16,26 +16,30 @@ export const EASE = {
   soft: [0.4, 0, 0.2, 1] as const,
 } as const
 
-export const DUR = { micro: 0.18, ui: 0.28, reveal: 0.64, hero: 0.9 } as const
+/* Reveals were long enough that fast scrolling outran them and content looked
+   like it was still arriving. Shorter and shallower reads as "settled". */
+export const DUR = { micro: 0.18, ui: 0.24, reveal: 0.42, hero: 0.8 } as const
 
 export const SPRING: Transition = {
   type: 'spring', stiffness: 260, damping: 30, mass: 0.9,
 }
 
-/* Standard viewport trigger — fire once, a little before the element lands. */
-export const VIEWPORT = { once: true, amount: 0.2, margin: '0px 0px -12% 0px' } as const
+/* Fire once, and early — triggering at 20% visible meant a section could be
+   half on screen before it started arriving. */
+export const VIEWPORT = { once: true, amount: 0.04, margin: '0px 0px -4% 0px' } as const
 
 /* ------------------------------------------------------------- variants - */
 
 /** Container that staggers its children. Pair with any child variant below. */
-export const stagger = (step = 0.07, delay = 0): Variants => ({
+export const stagger = (step = 0.05, delay = 0): Variants => ({
   hidden: {},
   show: { transition: { staggerChildren: step, delayChildren: delay } },
 })
 
-/** The workhorse: rise + fade. */
+/** The workhorse: rise + fade. Short travel — a big slide is what makes a page
+    feel unstable while you are reading it. */
 export const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 12 },
   show: { opacity: 1, y: 0, transition: { duration: DUR.reveal, ease: EASE.out } },
 }
 
@@ -74,10 +78,10 @@ export const clipRight: Variants = {
   show: { clipPath: 'inset(0% 0% 0% 0%)', transition: { duration: 0.9, ease: EASE.out } },
 }
 
-/** Cards: subtle scale so grids feel like they settle into place. */
+/** Cards: no scale — scaling a grid of cards on every scroll is busywork. */
 export const popIn: Variants = {
-  hidden: { opacity: 0, y: 20, scale: 0.98 },
-  show: { opacity: 1, y: 0, scale: 1, transition: { duration: DUR.reveal, ease: EASE.out } },
+  hidden: { opacity: 0, y: 12 },
+  show: { opacity: 1, y: 0, transition: { duration: DUR.reveal, ease: EASE.out } },
 }
 
 /** Single line of a split headline — the line sits in an overflow-hidden mask. */

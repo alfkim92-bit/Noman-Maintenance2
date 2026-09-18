@@ -9,128 +9,160 @@ import {
   useSpring, useMotionValue, animate, type Variants,
 } from 'framer-motion'
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import {
-  EASE, DUR, VIEWPORT, stagger, fadeUp, popIn, wordUp, clipUp, reduced, toWords,
-} from '@/lib/motion'
+import { EASE, DUR } from '@/lib/motion'
 
 /** useLayoutEffect on the client, useEffect on the server (no SSR warning). */
 const useIsomorphicLayoutEffect =
   typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
-/* ============================================================== <Reveal> ==
-   Drop-in scroll reveal. Replaces the old IntersectionObserver + .visible CSS.
-   <Reveal><h2>…</h2></Reveal>
-   <Reveal variant={clipUp} delay={.1} as="figure">…</Reveal>
+/* ======================================================== reveal machinery ==
+   Scroll reveals are CSS transitions triggered by an IntersectionObserver, not
+   JavaScript-driven animation.
+
+   Why: a JS animation that starts at opacity:0 leaves the element invisible
+   whenever the animation does not run — JS disabled, a hydration error, a
+   throttled background tab, a device dropping frames. Blank sections on scroll
+   is the worst failure a marketing site can have.
+
+   Here the element is visible by default. `html.js` (set below, on mount) is
+   what hides it, so hiding only ever happens when JS is demonstrably alive, and
+   the observer that un-hides it is already running.
    ========================================================================= */
+
+/** One observer for the whole page rather than one per element. */
+let sharedObserver: IntersectionObserver | null = null
+const getObserver = () => {
+  if (typeof window === 'undefined') return null
+  if (!sharedObserver) {
+    sharedObserver = new IntersectionObserver(
+      entries => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue
+          entry.target.classList.add('is-in')
+          sharedObserver?.unobserve(entry.target)
+        }
+      },
+      { rootMargin: '0px 0px -4% 0px', threshold: 0.01 }
+    )
+  }
+  return sharedObserver
+}
+
+function useReveal<T extends HTMLElement>(index = 0) {
+  const ref = useRef<T>(null)
+
+  useIsomorphicLayoutEffect(() => {
+    // Only now — with JS provably running — is it safe to hide things.
+    document.documentElement.classList.add('js')
+
+    const el = ref.current
+    if (!el) return
+    if (index) el.style.setProperty('--reveal-i', String(index))
+
+    // Already on screen at mount (above the fold): show immediately, so the
+    // first viewport never waits on a scroll event that may never come.
+    const rect = el.getBoundingClientRect()
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      requestAnimationFrame(() => el.classList.add('is-in'))
+      // rAF may be throttled; guarantee it regardless.
+      const t = setTimeout(() => el.classList.add('is-in'), 200)
+      return () => clearTimeout(t)
+    }
+
+    const observer = getObserver()
+    observer?.observe(el)
+    return () => observer?.unobserve(el)
+  }, [index])
+
+  return ref
+}
+
 type RevealProps = {
   children: React.ReactNode
+  /** Kept for call-site compatibility; the CSS transition is the same for all. */
   variant?: Variants
+  /** Stagger index — multiplied by 55ms of transition-delay. */
   delay?: number
   className?: string
-  as?: keyof typeof motion
+  as?: 'div' | 'li' | 'figure' | 'section' | 'article'
 }
+
 export function Reveal({
-  children, variant = fadeUp, delay = 0, className, as = 'div',
+  children,
+  delay = 0,
+  className = '',
+  as: Tag = 'div',
 }: RevealProps) {
-  const prefersReduced = useReducedMotion()
-  const Tag = motion[as] as typeof motion.div
+  const ref = useReveal<HTMLDivElement>(Math.round(delay * 18))
   return (
-    <Tag
-      className={className}
-      variants={prefersReduced ? reduced : variant}
-      initial="hidden"
-      whileInView="show"
-      viewport={VIEWPORT}
-      transition={{ delay: prefersReduced ? 0 : delay }}
-    >
+    <Tag ref={ref as never} className={`reveal ${className}`}>
       {children}
     </Tag>
   )
 }
 
-/* ========================================================== <RevealGroup> ==
-   Staggers direct children. Children must be <RevealItem> (or any element
-   with variants={fadeUp|popIn}).
-   ========================================================================= */
+/** Staggers its children by giving each one an increasing --reveal-i. */
 export function RevealGroup({
-  children, step = 0.07, delay = 0, className,
-}: { children: React.ReactNode; step?: number; delay?: number; className?: string }) {
-  const prefersReduced = useReducedMotion()
+  children,
+  className = '',
+}: {
+  children: React.ReactNode
+  step?: number
+  delay?: number
+  className?: string
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+
+  useIsomorphicLayoutEffect(() => {
+    document.documentElement.classList.add('js')
+    const el = ref.current
+    if (!el) return
+
+    const items = Array.from(el.children) as HTMLElement[]
+    items.forEach((child, i) => child.style.setProperty('--reveal-i', String(i)))
+
+    const rect = el.getBoundingClientRect()
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      const show = () => items.forEach(c => c.classList.add('is-in'))
+      requestAnimationFrame(show)
+      const t = setTimeout(show, 200)
+      return () => clearTimeout(t)
+    }
+
+    const observer = new IntersectionObserver(
+      entries => {
+        if (!entries[0]?.isIntersecting) return
+        items.forEach(c => c.classList.add('is-in'))
+        observer.disconnect()
+      },
+      { rootMargin: '0px 0px -4% 0px', threshold: 0.01 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <motion.div
-      className={className}
-      variants={stagger(prefersReduced ? 0 : step, delay)}
-      initial="hidden"
-      whileInView="show"
-      viewport={VIEWPORT}
-    >
+    <div ref={ref} className={className}>
       {children}
-    </motion.div>
+    </div>
   )
 }
 
 export function RevealItem({
-  children, variant = popIn, className,
-}: { children: React.ReactNode; variant?: Variants; className?: string }) {
-  const prefersReduced = useReducedMotion()
-  return (
-    <motion.div className={className} variants={prefersReduced ? reduced : variant}>
-      {children}
-    </motion.div>
-  )
-}
-
-/* =========================================================== <SplitText> ==
-   Word-by-word masked headline reveal. Renders real text (one <span> per
-   word) so it stays selectable, searchable and screen-reader friendly — the
-   whole string is also exposed via aria-label with the pieces aria-hidden.
-   ========================================================================= */
-export function SplitText({
-  text, className, as: Tag = 'h1', step = 0.045, delay = 0, once = true,
+  children,
+  className = '',
 }: {
-  text: string
+  children: React.ReactNode
+  variant?: Variants
   className?: string
-  as?: 'h1' | 'h2' | 'h3' | 'p' | 'span'
-  step?: number
-  delay?: number
-  once?: boolean
 }) {
-  const prefersReduced = useReducedMotion()
-  const ref = useRef<HTMLElement>(null)
-  const inView = useInView(ref, { once, amount: 0.3 })
-  const words = toWords(text)
-
-  if (prefersReduced) {
-    return <Tag className={className}>{text}</Tag>
-  }
-
-  return (
-    <Tag ref={ref as never} className={className} aria-label={text}>
-      <motion.span
-        aria-hidden
-        style={{ display: 'inline' }}
-        variants={stagger(step, delay)}
-        initial="hidden"
-        animate={inView ? 'show' : 'hidden'}
-      >
-        {words.map((w, i) =>
-          /\s+/.test(w) ? (
-            <span key={i}> </span>
-          ) : (
-            <span
-              key={i}
-              style={{ display: 'inline-block', overflow: 'hidden', verticalAlign: 'top' }}
-            >
-              <motion.span style={{ display: 'inline-block' }} variants={wordUp}>
-                {w}
-              </motion.span>
-            </span>
-          )
-        )}
-      </motion.span>
-    </Tag>
-  )
+  return <div className={`reveal ${className}`}>{children}</div>
 }
+
+/* SplitText (word-by-word masked headline reveal) was removed deliberately.
+   Each word sat in an overflow:hidden mask, translated out of view, and only
+   JavaScript brought it back — so a throttled tab or a dropped frame left the
+   headline blank. Headlines now use a plain CSS entrance (.anim-rise). */
 
 /* ============================================================= <CountUp> ==
    Animated stat numeral. Parses "90M+", "24+", "100 m" into number + suffix.
@@ -249,25 +281,18 @@ export function ScrollProgress() {
 }
 
 /* ========================================================= <MaskedImage> ==
-   Image that wipes up into view behind a clip mask. Use for feature photos
-   and ExplainerFigure screenshots.
+   Was a clip-path wipe driven by Framer. A half-finished clip-path leaves the
+   image sliced in half, so it now uses the same fail-visible reveal as
+   everything else.
    ========================================================================= */
 export function MaskedImage({
-  children, className, delay = 0,
+  children, className = '', delay = 0,
 }: { children: React.ReactNode; className?: string; delay?: number }) {
-  const prefersReduced = useReducedMotion()
+  const ref = useReveal<HTMLDivElement>(Math.round(delay * 18))
   return (
-    <motion.div
-      className={className}
-      variants={prefersReduced ? reduced : clipUp}
-      initial="hidden"
-      whileInView="show"
-      viewport={VIEWPORT}
-      transition={{ delay }}
-      style={{ willChange: 'clip-path' }}
-    >
+    <div ref={ref} className={`reveal ${className}`}>
       {children}
-    </motion.div>
+    </div>
   )
 }
 

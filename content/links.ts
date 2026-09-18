@@ -27,7 +27,7 @@ const STATIC_PAGES: LinkEntry[] = [
     blurb:
       'Engineering, civil, mechanical and E&I works under one accountable contract.',
     kicker: 'Services',
-    image: '/assets/_placeholder/PLACEHOLDER__services-engineering.png',
+    image: '/assets/projects/power-plant-ei.jpeg',
   },
   {
     href: '/solutions',
@@ -35,7 +35,7 @@ const STATIC_PAGES: LinkEntry[] = [
     blurb:
       'Seven engineered systems we supply, install, commission and maintain.',
     kicker: 'Solutions',
-    image: '/assets/_placeholder/PLACEHOLDER__solutions-overview.png',
+    image: '/assets/projects/steam-turbine-erection.jpeg',
   },
   {
     href: '/projects',
