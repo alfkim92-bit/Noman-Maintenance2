@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Analytics } from '@vercel/analytics/next'
 import { display, body, arabic } from './fonts'
 import { SITE } from '@/content/site'
 import Navbar from '@/components/layout/Navbar'
@@ -76,6 +77,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
         />
+        <Analytics />
       </body>
     </html>
   )
